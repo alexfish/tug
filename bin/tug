@@ -1,4 +1,4 @@
 require "tug"
 
-command = Command.new
-command.execute(*ARGV)
+parser = OptionParser.parser(*ARGV)
+Command.new.execute(parser.parsed_options)

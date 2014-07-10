@@ -1,6 +1,6 @@
 class EmptyOptionParser < OptionParser
 
-  def parse
+  def parsed_options
     puts "Help: #{options}"
   end
 

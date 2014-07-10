@@ -7,9 +7,6 @@ describe Command do
   end
 
   describe "when called" do
-    it "should build" do
-      expect(@command).to receive(:build)
-      @command.execute(["build"])
-    end
+
   end
 end

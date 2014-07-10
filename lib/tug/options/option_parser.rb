@@ -16,7 +16,7 @@ class OptionParser
     @options = options
   end
 
-  def parse
+  def parsed_options
     puts "Parse"
   end
 end

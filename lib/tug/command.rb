@@ -1,8 +1,7 @@
 class Command
 
-  def execute(*args)
-    parser = OptionParser.parser(args)
-    parser.parse
+  def execute(options)
+    puts options
   end
 
 end

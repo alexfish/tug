@@ -2,12 +2,11 @@ class Command
 
   def execute(*args)
     parser = OptionParser.new(args)
-    build
+    parser.parse
   end
 
   def build
     xcode = Xcode.new
     xcode.build
   end
-
 end
