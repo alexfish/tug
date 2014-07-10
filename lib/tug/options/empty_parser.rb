@@ -1,7 +1,12 @@
 class EmptyParser < Parser
 
-  def parsed_options
-    puts "Help: #{options}"
+  def initialize(options=nil)
+    super([])
   end
 
+  private
+
+  def parsed_options(options)
+    puts banner
+  end
 end

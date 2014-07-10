@@ -3,7 +3,7 @@ require "spec_helper"
 describe Parser do
   describe "when returning parsers" do
     it "should return an option parser for options" do
-      parser = Parser.parser_for_args("options")
+      parser = Parser.parser_for_args(["options"])
       expect(parser).to be_a_kind_of(Parser)
     end
 
@@ -15,8 +15,8 @@ describe Parser do
 
   describe "when parsing options" do
     it "should parse the command" do
-      parser = Parser.parser_for_args(["--c", "build"])
-      expect(parser.parsed_options[:command]).to match("build")
+      parser = Parser.parser_for_args(["build"])
+      expect(parser.command).to match("build")
     end
   end
 end

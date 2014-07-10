@@ -1,6 +1,7 @@
 class Parser
 
   attr_reader :options
+  attr_reader :command
 
   class << self
     def parser_for_args(options=nil)
@@ -13,16 +14,20 @@ class Parser
   end
 
   def initialize(options=nil)
-    @options = options
+    @options = parsed_options(options)
+    @command = options.shift
   end
 
-  def parsed_options
+  private
+
+  def banner
+    "Help!?"
+  end
+
+  def parsed_options(options)
     parsed_options_hash = {}
 
     o = OptionParser.new do |opt|
-      opt.on("-c","--command COMMAND", "the command to run") do |command|
-        parsed_options_hash[:command] = command
-      end
     end
 
     begin o.parse! options
