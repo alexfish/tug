@@ -1,6 +1,6 @@
 class Command
 
   def execute(command, options)
-    puts options + command
+    puts "#{command}: #{options}"
   end
 end

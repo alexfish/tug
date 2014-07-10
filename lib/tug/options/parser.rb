@@ -32,6 +32,7 @@ class Parser
 
     begin o.parse! options
     rescue OptionParser::InvalidOption => e
+      puts banner
     end
 
     parsed_options_hash
