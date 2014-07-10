@@ -1,6 +1,8 @@
 # Tug
 
-TODO: Write a gem description
+![icon](icon.png)
+
+Build and deploy iOS applications
 
 ## Installation
 
