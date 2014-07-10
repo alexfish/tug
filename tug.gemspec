@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["alex@alexefish.com"]
   spec.description   = "Build and deploy iOS project"
   spec.summary       = "iOS project builder and depoloyer"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/alexfish/tug"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "guard-rspec"
 end

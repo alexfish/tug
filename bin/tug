@@ -1,0 +1,4 @@
+require "tug"
+
+command = Command.new
+command.execute(*ARGV)

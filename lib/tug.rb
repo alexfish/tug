@@ -1,5 +1,4 @@
-require "tug/version"
+require "optparse"
 
-module Tug
-  # Your code goes here...
-end
+require "tug/version"
+require "tug/command"
