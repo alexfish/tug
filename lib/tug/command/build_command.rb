@@ -1,7 +1,7 @@
 class BuildCommand < Command
 
   def execute(options)
-    config = ConfigFile.config_file(options[:config])
-    puts "build: #{config}"
+    config_file = ConfigFile.config_file(options[:config])
+    puts "build: #{config_file.config}"
   end
 end
