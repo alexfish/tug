@@ -14,6 +14,7 @@ describe ConfigFile do
     end
 
     it "should return an external config file for a path" do
+      allow(File).to receive(:file?).and_return(true)
       config_file = ConfigFile.config_file("path")
       expect(config_file).to be_kind_of(ExternalConfigFile)
     end

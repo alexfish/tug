@@ -4,7 +4,7 @@ class ConfigFile
 
   class << self
     def config_file(path=nil)
-      if path
+      if path and File.file?(path)
         ExternalConfigFile.new(path)
       else
         ConfigFile.new
