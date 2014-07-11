@@ -1,8 +1,7 @@
 require "optparse"
 
 require "tug/version"
-require "tug/commands/command"
-require "tug/commands/build_command"
-require "tug/builders/xcode"
-require "tug/options/parser"
-require "tug/options/empty_parser"
+require "tug/command/command"
+require "tug/command/build_command"
+require "tug/parser/parser"
+require "tug/parser/empty_parser"
