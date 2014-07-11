@@ -1,4 +1,5 @@
 require "tug"
 
 parser = Parser.parser_for_args(*ARGV)
-Command.new.execute(parser.options, parser.command)
+command = Command.command_for_string(parser.command)
+command.execute(parser.options)
