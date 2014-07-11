@@ -25,9 +25,12 @@ class Parser
   end
 
   def parsed_options(options)
-    parsed_options_hash = {}
+    parsed_options = {}
 
-    o = OptionParser.new do |opt|
+    o = OptionParser.new do |opts|
+      opts.on("-c", "--config CONFIG", "Configuration file path") do |config|
+        parsed_options[:config] = config
+      end
     end
 
     begin o.parse! options
@@ -35,6 +38,6 @@ class Parser
       puts banner
     end
 
-    parsed_options_hash
+    parsed_options
   end
 end

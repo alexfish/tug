@@ -1,6 +1,6 @@
 class BuildCommand < Command
 
   def execute(options)
-    puts "build"
+    puts "build: #{options}"
   end
 end
