@@ -4,6 +4,9 @@
 
 Build and deploy iOS applications
 
+[![Build Status](https://travis-ci.org/alexfish/tug.svg?branch=feature%2Fbuild)](https://travis-ci.org/alexfish/tug)
+[![Code Climate](https://codeclimate.com/github/alexfish/tug.png)](https://codeclimate.com/github/alexfish/tug)
+
 ## Installation
 
 Add this line to your application's Gemfile:
