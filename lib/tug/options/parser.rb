@@ -14,8 +14,8 @@ class Parser
   end
 
   def initialize(options=nil)
-    @options = parsed_options(options)
     @command = options.shift
+    @options = parsed_options(options)
   end
 
   private
