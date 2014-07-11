@@ -15,12 +15,12 @@ describe Parser do
 
   describe "when parsing options" do
     it "should parse the command" do
-      parser = Parser.parser_for_args(["build"])
+      parser = Parser.parser_for_args("build")
       expect(parser.command).to match("build")
     end
 
     it "should parse the config file option" do
-      parser = Parser.new(["build", "-c", "path"])
+      parser = Parser.new("build", "-c", "path")
       expect(parser.options[:config]).to match("path")
     end
   end

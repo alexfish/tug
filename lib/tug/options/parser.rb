@@ -4,18 +4,18 @@ class Parser
   attr_reader :command
 
   class << self
-    def parser_for_args(options=nil)
-      if options
-        Parser.new(options)
+    def parser_for_args(*options)
+      if options.size > 0
+        Parser.new(*options)
       else
         EmptyParser.new
       end
     end
   end
 
-  def initialize(options=nil)
+  def initialize(*options)
     @command = options.shift
-    @options = parsed_options(options)
+    @options = parsed_options(*options)
   end
 
   private
@@ -24,7 +24,7 @@ class Parser
     "Help!?"
   end
 
-  def parsed_options(options)
+  def parsed_options(*options)
     parsed_options = {}
 
     o = OptionParser.new do |opts|
