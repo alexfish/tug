@@ -9,8 +9,15 @@ describe ConfigFile do
 
   describe "when returning a config file" do
     it "should return a config file for no path" do
+      expect(File).to receive(:file?).and_return(true)
       config_file = ConfigFile.config_file
       expect(config_file).to be_kind_of(ConfigFile)
+    end
+
+    it "should return a missing config file for no file found" do
+      expect(File).to receive(:file?).and_return(false)
+      config_file = ConfigFile.config_file
+      expect(config_file).to be_kind_of(MissingConfigFile)
     end
 
     it "should return an external config file for a path" do
