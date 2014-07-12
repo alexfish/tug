@@ -3,8 +3,8 @@ require "spec_helper"
 describe ConfigFile do
 
   before(:each) do
-    @config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"]}}
-    allow(YAML).to receive(:load_file).and_return({:test => "Hello world"})
+    config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"]}}
+    allow(YAML).to receive(:load_file).and_return(config)
     @config_file = ConfigFile.new
   end
 
@@ -30,8 +30,8 @@ describe ConfigFile do
   end
 
   describe "when loading config" do
-    it "should load the yaml config" do
-      expect(@config_file.config[:test]).to match("Hello world")
+    it "should load a project" do
+      expect(@config_file.project).to be
     end
   end
 end
