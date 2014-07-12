@@ -34,8 +34,10 @@ tug will look in the currenty directory for a `.tug.yml` config file by default,
 A sample config file:
 
 ```
-workspace: myworksapce.xcworkspace
-scheme: myscheme
+project:
+  workspace: tug.xcworkspace
+  schemes:
+    - tug
 ```
 
 ## Contributing
