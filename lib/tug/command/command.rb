@@ -11,6 +11,6 @@ class Command
     end
   end
 
-  def execute(options)
+  def execute(project)
   end
 end
