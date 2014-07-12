@@ -1,2 +1,4 @@
-workspace: tug.xcworkspace
-scheme: tug
+project:
+  workspace: tug.xcworkspace
+  scheme:
+    - tug

@@ -3,6 +3,7 @@ require "spec_helper"
 describe ConfigFile do
 
   before(:each) do
+    @config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"]}}
     allow(YAML).to receive(:load_file).and_return({:test => "Hello world"})
     @config_file = ConfigFile.new
   end

@@ -1,2 +1,8 @@
 Config file missing 😱
 Try specifying a path to your config with the -c option
+
+Commands:
+ build - Build an xcode project
+
+Options:
+ --config - Path to a .tug.yml config file
