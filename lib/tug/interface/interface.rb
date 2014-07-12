@@ -9,7 +9,7 @@ class Interface < Thor
 
   no_commands do
     def execute(command, project)
-      command = Command.command_from_string(command)
+      command = Command.command_for_string(command)
       command.execute(project)
     end
   end
