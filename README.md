@@ -4,6 +4,9 @@
 
 Build and deploy iOS applications
 
+[![Build Status](https://travis-ci.org/alexfish/tug.svg?branch=feature%2Fbuild)](https://travis-ci.org/alexfish/tug)
+[![Code Climate](https://codeclimate.com/github/alexfish/tug.png)](https://codeclimate.com/github/alexfish/tug)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -20,7 +23,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Build
+
+Run `tug build` from your Xcode projects root directory.
+
+### Config
+
+tug will look in the currenty directory for a `.tug.yml` config file by default, use the `--config` option to pass a path to your config file if it's in a different folder. 
+
+A sample config file:
+
+```
+project:
+  workspace: tug.xcworkspace
+  schemes:
+    - tug
+```
 
 ## Contributing
 
