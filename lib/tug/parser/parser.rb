@@ -21,7 +21,11 @@ class Parser
   private
 
   def banner
-    "Help!?"
+    "\n" +
+    "Commands:\n" +
+    " build - Build an xcode project\n\n" +
+    "Options:\n" +
+    " --config - Path to a .tug.yml config file"
   end
 
   def parsed_options(*options)
