@@ -5,23 +5,23 @@ describe BuildCommand do
   describe "when executing" do
 
     before(:each) do
-      @buld_command = BuildCommand.new
+      @build_command = BuildCommand.new
       @project = Project.new('workspace', ['scheme'])
     end
 
     it "should run xctool" do
-      expect(@buld_command).to receive(:system).with(/xctool/)
-      @buld_command.build(@project)
+      expect(@build_command).to receive(:system).with(/xctool/)
+      @build_command.execute(@project)
     end
 
     it "should set the workspace" do
-      expect(@buld_command).to receive(:system).with(/-workspace workspace/)
-      @buld_command.build(@project)
+      expect(@build_command).to receive(:system).with(/-workspace workspace/)
+      @build_command.execute(@project)
     end
 
     it "should set the scheme" do
-      expect(@buld_command).to receive(:system).with(/-scheme scheme/)
-      @buld_command.build(@project)
+      expect(@build_command).to receive(:system).with(/-scheme scheme/)
+      @build_command.execute(@project)
     end
   end
 end
