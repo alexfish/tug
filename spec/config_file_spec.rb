@@ -15,6 +15,7 @@ describe ConfigFile do
     end
 
     it "should return a missing config file for no file found" do
+      allow_any_instance_of(MissingConfigFile).to receive(:abort)
       expect(File).to receive(:file?).and_return(false)
       config_file = ConfigFile.config_file
       expect(config_file).to be_kind_of(MissingConfigFile)
