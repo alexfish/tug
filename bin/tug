@@ -2,4 +2,4 @@
 
 require "tug"
 
-Interface.start(ARGV)
+Tug::Interface.start(ARGV)

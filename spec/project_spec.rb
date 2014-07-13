@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Project do
+describe Tug::Project do
 
   describe "when created" do
 
     before(:each) do
-      @project = Project.new("workspace", ["scheme"])
+      @project = Tug::Project.new("workspace", ["scheme"])
     end
 
     it "should have a workspace" do

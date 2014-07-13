@@ -1,3 +1,2 @@
-
-Config file missing ⚠️
-- Try specifying a path to your config with the --config option
+Config file missing:
+  Try specifying a path to your config file with the --config option

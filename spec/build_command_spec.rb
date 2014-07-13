@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe BuildCommand do
+describe Tug::BuildCommand do
 
   describe "when executing" do
 
     before(:each) do
-      @build_command = BuildCommand.new
-      @project = Project.new('workspace', ['scheme'])
+      @build_command = Tug::BuildCommand.new
+      @project = Tug::Project.new('workspace', ['scheme'])
     end
 
     it "should run xctool" do
