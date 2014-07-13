@@ -1,5 +1,5 @@
+#!/usr/bin/env ruby
+
 require "tug"
 
-parser = Parser.parser_for_args(*ARGV)
-command = Command.command_for_string(parser.command)
-command.execute(parser.options)
+Tug::Interface.start(ARGV)

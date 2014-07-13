@@ -1,14 +1,16 @@
-class MissingConfigFile < ConfigFile
+module Tug
+  class MissingConfigFile < ConfigFile
 
-  def initialize(path=nil)
-    puts "Config file missing 😱\n" +
-    "Try specifying a path to your config with the -c option"
-    abort
-  end
+    def initialize(path=nil)
+      puts "Config file missing:\n" +
+      "  Try specifying a path to your config file with the --config option"
+      abort
+    end
 
-  private
+    private
 
-  def abort
-    exit 1
+    def abort
+      exit 1
+    end
   end
 end
