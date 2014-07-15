@@ -6,6 +6,8 @@ module Tug
         case command_string
         when "build"
           Tug::BuildCommand.new
+        when "ipa"
+          Tug::IpaCommand.new
         else
           Tug::Command.new
         end
