@@ -12,6 +12,5 @@ require "tug/interface/interface"
 
 require "tug/config/config_file"
 require "tug/config/missing_config_file"
-require "tug/config/external_config_file"
 
 require "tug/project/project"

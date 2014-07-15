@@ -6,9 +6,7 @@ module Tug
     class << self
       def config_file(path=nil)
         if path and File.file?(path)
-          Tug::ExternalConfigFile.new(path)
-        elsif File.file?(File.join(Dir.pwd, '.tug.yml'))
-          Tug::ConfigFile.new
+          Tug::ConfigFile.new(path)
         else
           Tug::MissingConfigFile.new
         end
