@@ -12,5 +12,10 @@ describe Tug::IpaCommand do
       expect(@command).to receive(:system).with(/config/)
       @command.execute(@project)
     end
+
+    it "should build using the archive command" do
+      expect(@command).to receive(:system).with(/archive/)
+      @command.execute(@project)
+    end
   end
 end
