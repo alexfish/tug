@@ -22,7 +22,7 @@ module Tug
 
     def project_from_config(config)
       project_yaml = config['project']
-      Tug::Project.new(project_yaml['workspace'], project_yaml['schemes'])
+      Tug::Project.new(project_yaml['workspace'], project_yaml['schemes'], project_yaml['ipa_config'])
     end
   end
 end

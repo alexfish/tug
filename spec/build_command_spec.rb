@@ -6,7 +6,7 @@ describe Tug::BuildCommand do
 
     before(:each) do
       @build_command = Tug::BuildCommand.new
-      @project = Tug::Project.new('workspace', ['scheme'])
+      @project = Tug::Project.new('workspace', ['scheme'], 'config')
     end
 
     it "should run xctool" do

@@ -3,7 +3,7 @@ require "spec_helper"
 describe Tug::ConfigFile do
 
   before(:each) do
-    config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"]}}
+    config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"], 'ipa_config' => 'config'}}
     allow(YAML).to receive(:load_file).and_return(config)
     @config_file = Tug::ConfigFile.new
   end
