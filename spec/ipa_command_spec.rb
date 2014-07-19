@@ -8,18 +8,8 @@ describe Tug::IpaCommand do
       @project = Tug::Project.new('workspace', ['scheme'], 'config')
     end
 
-    it "should use the project's ipa config setting" do
-      expect(@command).to receive(:system).with(/config/)
-      @command.execute(@project)
-    end
-
-    it "should build using the archive command" do
-      expect(@command).to receive(:system).with(/archive/)
-      @command.execute(@project)
-    end
-
-    it "should set an export path" do
-      expect(@command).to receive(:system).with(/-archivePath/)
+    it "should archive and export" do
+      expect(@command).to receive(:system).with(/archive/).twice
       @command.execute(@project)
     end
   end
