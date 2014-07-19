@@ -17,5 +17,10 @@ describe Tug::IpaCommand do
       expect(@command).to receive(:system).with(/archive/)
       @command.execute(@project)
     end
+
+    it "should set an export path" do
+      expect(@command).to receive(:system).with(/-archivePath/)
+      @command.execute(@project)
+    end
   end
 end
