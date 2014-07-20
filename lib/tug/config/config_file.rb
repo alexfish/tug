@@ -13,9 +13,15 @@ module Tug
       end
     end
 
-    def initialize(path=nil)
-      config = YAML::load_file(File.join(Dir.pwd, '.tug.yml'))
+    def initialize(path=default_path)
+      config = YAML::load_file(path)
       @project = Tug::Project.new(config['project'])
+    end
+
+    private
+
+    def default_path
+      File.join(Dir.pwd, '.tug.yml')
     end
   end
 end
