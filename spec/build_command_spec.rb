@@ -7,7 +7,7 @@ describe Tug::BuildCommand do
     before(:each) do
       @command = Tug::BuildCommand.new
       allow(@command).to receive(:system)
-      @project = Tug::Project.new('workspace', ['scheme'], 'Debug')
+      @project = Tug::Project.new('workspace', ['scheme'], "")
     end
 
     it "should build using xctool" do

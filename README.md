@@ -38,6 +38,7 @@ project:
   workspace: tug.xcworkspace
   schemes:
     - tug
+  ipa_config: Release
 ```
 
 ## Contributing

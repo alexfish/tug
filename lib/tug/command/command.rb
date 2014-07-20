@@ -15,6 +15,16 @@ module Tug
     end
 
     def execute(project)
+      @xctool = xctool(project.ipa_config)
+      project.schemes.each do |scheme|
+        @xctool.build(project.workspace, scheme)
+      end
+    end
+
+    private
+
+    def xctool(config)
+      xctool = Tug::XCTool.tool_for_config(config)
     end
   end
 end
