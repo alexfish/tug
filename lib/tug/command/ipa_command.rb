@@ -1,8 +1,9 @@
 module Tug
   class IpaCommand < Command
     def execute(project)
+      xctool = Tug::XCTool.new
       project.schemes.each do |scheme|
-        system("xctool -workspace #{project.workspace} -scheme #{scheme} -configuration #{project.ipa_config} archive -archivePath /tmp/#{scheme}.xcarchive")
+        xctool.generate_archive(project.workspace, scheme, project.ipa_config)
         system("xcodebuild -archivePath /tmp/#{scheme}.xcarchive -exportPath /tmp/#{scheme}.ipa -exportFormat ipa -exportArchive")
       end
     end

@@ -14,3 +14,5 @@ require "tug/config/config_file"
 require "tug/config/missing_config_file"
 
 require "tug/project/project"
+
+require "tug/tool/xctool"

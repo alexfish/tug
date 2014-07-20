@@ -1,9 +1,9 @@
 module Tug
   class BuildCommand < Command
-
     def execute(project)
+      xctool = Tug::XCTool.new
       project.schemes.each do |scheme|
-        system("xctool -workspace #{project.workspace} -scheme #{scheme} -sdk iphonesimulator")
+        xctool.build(project.workspace, scheme)
       end
     end
   end
