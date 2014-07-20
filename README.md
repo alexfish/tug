@@ -39,6 +39,7 @@ project:
   schemes:
     - tug
   ipa_config: Release
+  ipa_profile: "Root\ Profile"
 ```
 
 ## Contributing
