@@ -4,7 +4,7 @@ module Tug
     attr_reader :project
 
     class << self
-      def config_file(path=nil)
+      def config_file(path=default_path)
         if path and File.file?(path)
           Tug::ConfigFile.new(path)
         else
@@ -13,7 +13,7 @@ module Tug
       end
     end
 
-    def initialize(path=default_path)
+    def initialize(path)
       config = YAML::load_file(path)
       @project = Tug::Project.new(config['project'])
     end

@@ -5,7 +5,7 @@ describe Tug::ConfigFile do
   before(:each) do
     config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"], 'ipa_config' => 'config'}}
     allow(YAML).to receive(:load_file).and_return(config)
-    @config_file = Tug::ConfigFile.new
+    @config_file = Tug::ConfigFile.new("path")
   end
 
   describe "when returning a config file" do

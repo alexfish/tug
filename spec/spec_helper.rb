@@ -2,12 +2,10 @@ require "tug"
 
 module Helpers
   def project_yaml
-    {
-      "workspace" => "workspace",
+    {"workspace" => "workspace",
       "schemes" => ["scheme"],
       "ipa_config" => "config",
-      "ipa_profile" => "profile"
-    }
+      "ipa_profile" => "profile"}
   end
 end
 
