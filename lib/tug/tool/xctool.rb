@@ -1,12 +1,31 @@
 module Tug
   class XCTool
 
-    def generate_archive(workspace, scheme, configuration)
-      system("xctool -workspace #{workspace} -scheme #{scheme} -configuration #{configuration} archive -archivePath /tmp/#{scheme}.xcarchive")
+    attr_reader :config
+
+    class << self
+      def tool_for_config(config)
+        case config.downcase
+        when "inhouse", "release"
+          Tug::XCToolArchive.new(config)
+        else
+          Tug::XCToolBuild.new(config)
+        end
+      end
+    end
+
+    def initialize(config)
+      @config = config
     end
 
     def build(workspace, scheme)
-      system("xctool -workspace #{workspace} -scheme #{scheme} -sdk iphonesimulator")
+      system("xctool #{build_options(workspace, scheme)}")
+    end
+
+    private
+
+    def build_options(workspace, scheme)
+      "-workspace #{workspace} -scheme #{scheme} -configuration #{config}"
     end
   end
 end
