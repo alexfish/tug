@@ -6,7 +6,10 @@ describe Tug::IpaCommand do
     before(:each) do
       @command = Tug::IpaCommand.new
       allow(@command).to receive(:system)
-      @project = Tug::Project.new('workspace', ['scheme'], 'InHouse')
+
+      yaml = project_yaml
+      yaml["ipa_config"] = "InHouse"
+      @project = Tug::Project.new(yaml)
     end
 
     it "should generate an archive using xctool" do

@@ -5,7 +5,7 @@ describe Tug::Project do
   describe "when created" do
 
     before(:each) do
-      @project = Tug::Project.new("workspace", ["scheme"], "config")
+      @project = Tug::Project.new(project_yaml)
     end
 
     it "should have a workspace" do

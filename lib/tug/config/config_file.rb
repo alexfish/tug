@@ -15,14 +15,7 @@ module Tug
 
     def initialize(path=nil)
       config = YAML::load_file(File.join(Dir.pwd, '.tug.yml'))
-      @project = project_from_config(config)
-    end
-
-    private
-
-    def project_from_config(config)
-      project_yaml = config['project']
-      Tug::Project.new(project_yaml['workspace'], project_yaml['schemes'], project_yaml['ipa_config'])
+      @project = Tug::Project.new(config['project'])
     end
   end
 end

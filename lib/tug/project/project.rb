@@ -4,11 +4,13 @@ module Tug
     attr_reader :schemes
     attr_reader :workspace
     attr_reader :ipa_config
+    attr_reader :ipa_profile
 
-    def initialize(workspace, schemes, ipa_config)
-      @schemes = schemes
-      @workspace = workspace
-      @ipa_config = ipa_config
+    def initialize(project_yaml)
+      @schemes = project_yaml['schemes']
+      @workspace = project_yaml['workspace']
+      @ipa_config = project_yaml['ipa_config']
+      @ipa_profile = project_yaml['ipa_profile']
     end
   end
 end
