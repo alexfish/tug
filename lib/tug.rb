@@ -5,7 +5,6 @@ require 'thor'
 require "tug/version"
 
 require "tug/command/command"
-require "tug/command/build_command"
 require "tug/command/ipa_command"
 
 require "tug/interface/interface"

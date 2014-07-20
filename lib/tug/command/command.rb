@@ -4,8 +4,6 @@ module Tug
     class << self
       def command_for_string(command_string)
         case command_string
-        when "build"
-          Tug::BuildCommand.new
         when "ipa"
           Tug::IpaCommand.new
         else
@@ -15,6 +13,10 @@ module Tug
     end
 
     def execute(project)
+      xctool = Tug::XCTool.tool_for_config(project.ipa_config)
+      project.schemes.each do |scheme|
+        xctool.build(project.workspace, scheme)
+      end
     end
   end
 end
