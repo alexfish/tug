@@ -15,6 +15,7 @@ require "tug/config/missing_config_file"
 
 require "tug/project/project"
 
+require "tug/tool/xcode_build"
 require "tug/tool/xctool"
 require "tug/tool/xctool_build"
 require "tug/tool/xctool_archive"
