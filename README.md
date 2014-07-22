@@ -35,11 +35,11 @@ A sample config file:
 
 ```
 project:
-  workspace: tug.xcworkspace
-  schemes:
+  workspace: tug.xcworkspace     # Path to the project workspace
+  schemes:                       # An array of schemes to build
     - tug
-  ipa_config: Release
-  ipa_profile: "Root\ Profile"
+  ipa_config: Release            # The configuration to use to build ipas
+  ipa_profile: "Root Profile"    # The provisioning profile to use to sign ipas
 ```
 
 ## Contributing
