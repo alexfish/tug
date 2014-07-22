@@ -8,7 +8,7 @@ module Tug
     private
 
     def profile_options(profile)
-      "-exportProvisioningProfile #{profile}"
+      "-exportProvisioningProfile '#{profile}'"
     end
 
     def export_options(name)

@@ -20,7 +20,7 @@ describe Tug::IpaCommand do
     end
 
     it "should export an ipa using xcode build" do
-      expect_any_instance_of(Tug::XcodeBuild).to receive(:system).with("xcodebuild -archivePath /tmp/scheme.xcarchive -exportPath /tmp/scheme.ipa -exportFormat ipa -exportArchive -exportProvisioningProfile profile")
+      expect_any_instance_of(Tug::XcodeBuild).to receive(:system).with("xcodebuild -archivePath /tmp/scheme.xcarchive -exportPath /tmp/scheme.ipa -exportFormat ipa -exportArchive -exportProvisioningProfile 'profile'")
       @command.execute(@project)
     end
 
