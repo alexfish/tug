@@ -25,7 +25,11 @@ Or install it yourself as:
 
 ### Build
 
-Run `tug build` from your Xcode projects root directory.
+Run `tug build` from your Xcode projects root directory. Each scheme in the scheme config array will be built.
+
+### IPA
+
+Run `tug ipa` from your Xcode projects root directory, see the example config below for details on how to set a configuration and profile name. An ipa will be generated for each scheme in the config's scheme array.
 
 ### Config
 
