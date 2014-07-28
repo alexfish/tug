@@ -4,27 +4,24 @@ module Tug
     attr_reader :project
 
     class << self
-      def config_file(path=nil)
+      def config_file(path=default_path)
         if path and File.file?(path)
-          Tug::ExternalConfigFile.new(path)
-        elsif File.file?(File.join(Dir.pwd, '.tug.yml'))
-          Tug::ConfigFile.new
+          Tug::ConfigFile.new(path)
         else
           Tug::MissingConfigFile.new
         end
       end
     end
 
-    def initialize(path=nil)
-      config = YAML::load_file(File.join(Dir.pwd, '.tug.yml'))
-      @project = project_from_config(config)
+    def initialize(path)
+      config = YAML::load_file(path)
+      @project = Tug::Project.new(config['project'])
     end
 
     private
 
-    def project_from_config(config)
-      project_yaml = config['project']
-      Tug::Project.new(project_yaml['workspace'], project_yaml['schemes'])
+    def default_path
+      File.join(Dir.pwd, '.tug.yml')
     end
   end
 end

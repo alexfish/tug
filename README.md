@@ -25,7 +25,11 @@ Or install it yourself as:
 
 ### Build
 
-Run `tug build` from your Xcode projects root directory.
+Run `tug build` from your Xcode projects root directory. Each scheme in the scheme config array will be built.
+
+### IPA
+
+Run `tug ipa` from your Xcode projects root directory, see the example config below for details on how to set a configuration and profile name. An ipa will be generated for each scheme in the config's scheme array.
 
 ### Config
 
@@ -35,9 +39,11 @@ A sample config file:
 
 ```
 project:
-  workspace: tug.xcworkspace
-  schemes:
+  workspace: tug.xcworkspace     # Path to the project workspace
+  schemes:                       # An array of schemes to build
     - tug
+  ipa_config: Release            # The configuration to use to build ipas
+  ipa_profile: "Root Profile"    # The provisioning profile to use to sign ipas
 ```
 
 ## Contributing

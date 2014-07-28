@@ -2,3 +2,5 @@ project:
   workspace: tug.xcworkspace
   schemes:
     - tug
+  ipa_config: InHouse
+  ipa_profile: "Root\ Profile"

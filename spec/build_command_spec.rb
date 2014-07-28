@@ -5,23 +5,14 @@ describe Tug::BuildCommand do
   describe "when executing" do
 
     before(:each) do
-      @build_command = Tug::BuildCommand.new
-      @project = Tug::Project.new('workspace', ['scheme'])
+      @command = Tug::BuildCommand.new
+      allow(@command).to receive(:system)
+      @project = Tug::Project.new(project_yaml)
     end
 
-    it "should run xctool" do
-      expect(@build_command).to receive(:system).with(/xctool/)
-      @build_command.execute(@project)
-    end
-
-    it "should set the workspace" do
-      expect(@build_command).to receive(:system).with(/-workspace workspace/)
-      @build_command.execute(@project)
-    end
-
-    it "should set the scheme" do
-      expect(@build_command).to receive(:system).with(/-scheme scheme/)
-      @build_command.execute(@project)
+    it "should build using xctool" do
+      expect_any_instance_of(Tug::XCTool).to receive(:system).with("xctool -workspace workspace -scheme scheme -configuration Debug -sdk iphonesimulator")
+      @command.execute(@project)
     end
   end
 end
