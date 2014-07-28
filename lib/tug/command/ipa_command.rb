@@ -12,7 +12,7 @@ module Tug
     def export_ipa(project)
       xcodebuild = Tug::XcodeBuild.new
       project.schemes.each do |scheme|
-        xcodebuild.export_ipa(scheme, project.ipa_profile)
+        xcodebuild.export_ipa(scheme)
       end
     end
 
