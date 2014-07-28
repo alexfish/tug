@@ -7,6 +7,16 @@ module Tug
     attr_reader :private_key
     attr_reader :private_key_password
 
+    class << self
+      def keychain(keychain_yaml)
+        if keychain_yaml["private_key_password"]
+          Tug::ProtectedKeychain.new(keychain_yaml)
+        else
+          Tug::Keychain.new(keychain_yaml)
+        end
+      end
+    end
+
     def initialize(keychain_yaml)
       @apple_certificate          = keychain_yaml["apple_certificate"]
       @distribution_certificate   = keychain_yaml["distribution_certificate"]
@@ -16,33 +26,33 @@ module Tug
     end
 
     def import_apple_certificate
-      system("security import #{apple_certificate} -k #{keychain_path} -T /usr/bin/codesign")
+      system(import_command(apple_certificate))
     end
 
     def import_distribution_certificate
-      system("security import #{distribution_certificate} -k #{keychain_path} -T /usr/bin/codesign")
+      system(import_command(distribution_certificate))
     end
 
     def import_private_key
-      system("security import #{private_key} -k #{keychain_path}#{password_option}-T /usr/bin/codesign")
+      system(import_command(private_key))
     end
 
     def import_profile
-      FileUtils.cp(distribution_profile, "#{File.expand_path('~')}/Library/MobileDevice/Provisioning\ Profiles/#{profile_name}")
+      FileUtils.cp(distribution_profile, profile_export_path)
     end
 
     private
 
+    def profile_export_path
+      "#{File.expand_path('~')}/Library/MobileDevice/Provisioning\ Profiles/#{profile_name}"
+    end
+
+    def import_command(file)
+      "security import #{file} -k #{keychain_path} -T /usr/bin/codesign"
+    end
+
     def profile_name
       distribution_profile.split("/").last
-    end
-    
-    def password_option
-      if password
-        " -P #{private_key_password} "
-      else
-        " "
-      end
     end
 
     def keychain_path

@@ -3,14 +3,22 @@ require "spec_helper"
 describe Tug::Keychain do 
 
   before(:each) do
-    yaml = {"apple_certificate" => "apple", 
+    @yaml = {"apple_certificate" => "apple", 
             "distribution_certificate" => "dist", 
             "distribution_profile" => "path/to/profile", 
             "private_key" => "private", 
             "private_key_password" => "password"}
 
-    @keychain = Tug::Keychain.new(yaml)
+    @keychain = Tug::Keychain.keychain(@yaml)
     allow(@keychain).to receive(:system)
+  end
+
+  describe "when returning keychains" do
+    it "should return a keychian" do
+    end
+
+    it "should return a protected keychain if password is missing" do
+    end
   end
 
   describe "when created" do
@@ -48,14 +56,18 @@ describe Tug::Keychain do
     end
 
     it "should import the private key" do
-      expect(@keychain).to receive(:password).and_return(nil)
+      @yaml["private_key_password"] = nil
+      @keychain = Tug::Keychain.keychain(@yaml)
+
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Keychains/tug.keychain -T /usr/bin/codesign")
       @keychain.import_private_key
     end
 
     it "should import the private key with a password" do
-      expect(@keychain).to receive(:password).and_return("password")
-      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Keychains/tug.keychain -P password -T /usr/bin/codesign")
+      @yaml["private_key_password"] = "password"
+      @keychain = Tug::Keychain.keychain(@yaml)
+
+      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Keychains/tug.keychain -T /usr/bin/codesign -P password")
       @keychain.import_private_key
     end
   end
