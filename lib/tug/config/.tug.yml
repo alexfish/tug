@@ -3,3 +3,9 @@ project:
   schemes:
     - tug
   ipa_config: InHouse
+keychain:
+  apple_certificate: apple.cer
+  distribution_certificate: dist.cer
+  distribution_profile: profile.mobileprovision
+  private_key: dist.p12
+  private_key_password: password
