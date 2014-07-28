@@ -18,7 +18,7 @@ module Tug
 
     def move_ipa(project)
       project.schemes.each do |scheme|
-        FileUtils.mv "/tmp/#{scheme}.ipa", "#{Dir.pwd}/#{scheme}.ipa"
+        FileUtils.mv "/tmp/#{scheme}.ipa", "#{project.ipa_export_path}/#{scheme}.ipa"
       end
     end
   end

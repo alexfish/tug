@@ -24,8 +24,9 @@ describe Tug::IpaCommand do
       @command.execute(@project)
     end
 
-    it "should move the ipa file into the current directory" do
-      expect(FileUtils).to receive(:mv)
+    it "should move the ipa file into the export path location" do
+      @project.ipa_export_path = "/hello/world"
+      expect(FileUtils).to receive(:mv).with(anything, /hello\/world/)
       @command.execute(@project)
     end
   end

@@ -23,5 +23,9 @@ describe Tug::Project do
     it "should have an ipa profile" do
       expect(@project.ipa_profile).to match("profile")
     end
+
+    it "should have an ipa export path" do
+      expect(@project.ipa_export_path).to be
+    end
   end
 end
