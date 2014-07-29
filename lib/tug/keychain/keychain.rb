@@ -25,6 +25,14 @@ module Tug
       @private_key_password       = keychain_yaml["private_key_password"]
     end
 
+    def create_keychain
+      system("security create-keychain -p tug #{keychain_name}.keychain")
+    end
+
+    def delete_keychain
+      system("security delete-keychain #{keychain_name}.keychain")
+    end
+
     def import_apple_certificate
       system(import_command(apple_certificate))
     end
@@ -34,29 +42,25 @@ module Tug
     end
 
     def import_private_key
-      system(import_command(private_key))
+      system(import_command(private_key) + " -P ''")
     end
 
     def import_profile
-      FileUtils.cp(distribution_profile, profile_export_path)
+      system("cp #{distribution_profile} #{profile_export_path}")
     end
 
     private
 
     def profile_export_path
-      "#{File.expand_path('~')}/Library/MobileDevice/Provisioning\ Profiles/#{profile_name}"
+      "#{File.expand_path('~')}/Library/MobileDevice/Provisioning\\ Profiles/"
     end
 
     def import_command(file)
       "security import #{file} -k #{keychain_path} -T /usr/bin/codesign"
     end
 
-    def profile_name
-      distribution_profile.split("/").last
-    end
-
     def keychain_path
-      "#{File.expand_path('~')}/Keychains/#{keychain_name}.keychain"
+      "#{File.expand_path('~')}/Library/Keychains/#{keychain_name}.keychain"
     end
 
     def keychain_name

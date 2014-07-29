@@ -18,6 +18,7 @@ module Tug
     end
 
     desc "provision", "provision system distrubution certificates and provisioning profile"
+    option :config, :default => "#{Dir.pwd}/.tug.yml"
     def provision
       config_file = Tug::ConfigFile.config_file(options[:config])
       execute(__method__.to_s, config_file)
