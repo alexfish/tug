@@ -2,8 +2,9 @@ require "spec_helper"
 
 describe Tug::ConfigFile do
 
-  before(:each) do
-    config = {'project' => {'workspace' => 'hello', 'schemes' => ["world"], 'ipa_config' => 'config'}}
+  before(:each) do  
+    file = File.expand_path(File.join(File.dirname(__FILE__), "../lib/tug/config/.tug.yml"))
+    config = YAML.load_file(file)
     allow(YAML).to receive(:load_file).and_return(config)
     @config_file = Tug::ConfigFile.new("path")
   end
@@ -26,6 +27,10 @@ describe Tug::ConfigFile do
   describe "when loading config" do
     it "should load a project" do
       expect(@config_file.project).to be
+    end
+
+    it "should load a keychain" do
+      expect(@config_file.keychain).to be
     end
   end
 end

@@ -9,9 +9,9 @@ module Tug
 
     class << self
       def keychain(keychain_yaml)
-        if keychain_yaml["private_key_password"]
+        if keychain_yaml and keychain_yaml.has_key? "private_key_password"
           Tug::ProtectedKeychain.new(keychain_yaml)
-        else
+        elsif keychain_yaml
           Tug::Keychain.new(keychain_yaml)
         end
       end

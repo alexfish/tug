@@ -12,22 +12,25 @@ describe Tug::IpaCommand do
       yaml = project_yaml
       yaml["ipa_config"] = "InHouse"
       @project = Tug::Project.new(yaml)
+
+      @config = double(Tug::ConfigFile)
+      allow(@config).to receive(:project).and_return(@project)
     end
 
     it "should generate an archive using xctool" do
       expect_any_instance_of(Tug::XCTool).to receive(:system).with("xctool -workspace workspace -scheme scheme -configuration InHouse archive -archivePath /tmp/scheme.xcarchive")
-      @command.execute(@project)
+      @command.execute(@config)
     end
 
     it "should export an ipa using xcode build" do
       expect_any_instance_of(Tug::XcodeBuild).to receive(:system).with("xcodebuild -archivePath /tmp/scheme.xcarchive -exportPath /tmp/scheme.ipa -exportFormat ipa -exportArchive -exportWithOriginalSigningIdentity")
-      @command.execute(@project)
+      @command.execute(@config)
     end
 
     it "should move the ipa file into the export path location" do
       @project.ipa_export_path = "/hello/world"
       expect(FileUtils).to receive(:mv).with(anything, /hello\/world/)
-      @command.execute(@project)
+      @command.execute(@config)
     end
   end
 end

@@ -1,10 +1,10 @@
 module Tug
   class IpaCommand < Command
 
-    def execute(project)
+    def execute(config_file)
       super
-      export_ipa(project)
-      move_ipa(project)
+      export_ipa(config_file.project)
+      move_ipa(config_file.project)
     end
 
     private

@@ -56,7 +56,7 @@ describe Tug::Keychain do
     end
 
     it "should import the private key" do
-      @yaml["private_key_password"] = nil
+      @yaml.delete("private_key_password")
       @keychain = Tug::Keychain.keychain(@yaml)
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Keychains/tug.keychain -T /usr/bin/codesign")
