@@ -52,7 +52,7 @@ module Tug
     end
 
     def import_profile
-      FileUtils.mkdir_p profile_export_path
+      FileUtils.mkdir_p "#{File.expand_path('~')}/Library/MobileDevice/Provisioning\ Profiles/"
       system("cp #{distribution_profile} #{profile_export_path}")
     end
 
