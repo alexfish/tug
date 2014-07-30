@@ -52,6 +52,7 @@ module Tug
     end
 
     def import_profile
+      FileUtils.mkdir_p profile_export_path
       system("cp #{distribution_profile} #{profile_export_path}")
     end
 

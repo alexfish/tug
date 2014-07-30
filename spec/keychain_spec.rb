@@ -92,7 +92,16 @@ describe Tug::Keychain do
   end
 
   describe "when importing profiles" do
- 
+  
+    before(:each) do
+      allow(FileUtils).to receive(:mkdir_p)
+    end
+
+    it "should create a profile folder" do
+      expect(FileUtils).to receive(:mkdir_p).with("#{File.expand_path('~')}/Library/MobileDevice/Provisioning\\ Profiles/")
+      @keychain.import_profile
+    end
+
     it "should import the dist profile" do
       expect(@keychain).to receive(:system).with("cp path/to/profile #{File.expand_path('~')}/Library/MobileDevice/Provisioning\\ Profiles/")
       @keychain.import_profile
