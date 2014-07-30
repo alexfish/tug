@@ -43,29 +43,34 @@ describe Tug::Keychain do
     end
 
     it "should have a default keychain name" do
-      expect(@keychain.name).to match("login")
+      expect(@keychain.name).to match("tug")
     end
   end
 
   describe "when importing certificates" do
 
+    it "should select a keychain" do
+      expect(@keychain).to receive(:system).with("security default-keychain -s test.keychain")
+      @keychain.select_keychain("test")
+    end
+
     it "should create a keychain" do
-      expect(@keychain).to receive(:system).with("security create-keychain -p tug login.keychain")
+      expect(@keychain).to receive(:system).with("security create-keychain -p tug tug.keychain")
       @keychain.create_keychain
     end
 
     it "should delete a keychain" do
-      expect(@keychain).to receive(:system).with("security delete-keychain login.keychain")
+      expect(@keychain).to receive(:system).with("security delete-keychain tug.keychain")
       @keychain.delete_keychain
     end
 
     it "should import the apple certificate" do
-      expect(@keychain).to receive(:system).with("security import apple -k #{File.expand_path('~')}/Library/Keychains/login.keychain -T /usr/bin/codesign")
+      expect(@keychain).to receive(:system).with("security import apple -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign")
       @keychain.import_apple_certificate
     end
 
     it "should import the dist certificate" do
-      expect(@keychain).to receive(:system).with("security import dist -k #{File.expand_path('~')}/Library/Keychains/login.keychain -T /usr/bin/codesign")
+      expect(@keychain).to receive(:system).with("security import dist -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign")
       @keychain.import_distribution_certificate
     end
 
@@ -73,7 +78,7 @@ describe Tug::Keychain do
       @yaml.delete("private_key_password")
       @keychain = Tug::Keychain.keychain(@yaml)
 
-      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/login.keychain -T /usr/bin/codesign -P ''")
+      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P ''")
       @keychain.import_private_key
     end
 
@@ -81,7 +86,7 @@ describe Tug::Keychain do
       @yaml["private_key_password"] = "password"
       @keychain = Tug::Keychain.keychain(@yaml)
 
-      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/login.keychain -T /usr/bin/codesign -P 'password'")
+      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P 'password'")
       @keychain.import_private_key
     end
   end

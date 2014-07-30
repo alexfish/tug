@@ -24,11 +24,15 @@ module Tug
       @distribution_profile       = keychain_yaml["distribution_profile"]
       @private_key                = keychain_yaml["private_key"]
       @private_key_password       = keychain_yaml["private_key_password"]
-      @name                       = "login"
+      @name                       = "tug"
     end
 
     def create_keychain
       system("security create-keychain -p tug #{name}.keychain")
+    end
+
+    def select_keychain(keychain_name=name)
+      system("security default-keychain -s #{keychain_name}.keychain")
     end
 
     def delete_keychain

@@ -5,6 +5,7 @@ module Tug
       keychain = config_file.keychain
 
       keychain.create_keychain
+      keychain.select_keychain(keychain.name)
       keychain.import_apple_certificate
       keychain.import_distribution_certificate
       keychain.import_private_key
