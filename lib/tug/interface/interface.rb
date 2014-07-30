@@ -22,6 +22,7 @@ module Tug
     option :keychain, :default => "login", :aliases => "-k"
     def provision
       config_file = Tug::ConfigFile.config_file(options[:config])
+      config_file.keychain.name = options[:keychain]
       execute(__method__.to_s, config_file)
     end
 

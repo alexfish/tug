@@ -6,6 +6,7 @@ module Tug
     attr_reader :distribution_profile
     attr_reader :private_key
     attr_reader :private_key_password
+    attr_accessor :name
 
     class << self
       def keychain(keychain_yaml)
@@ -23,14 +24,15 @@ module Tug
       @distribution_profile       = keychain_yaml["distribution_profile"]
       @private_key                = keychain_yaml["private_key"]
       @private_key_password       = keychain_yaml["private_key_password"]
+      @name                       = "login"
     end
 
     def create_keychain
-      system("security create-keychain -p tug #{keychain_name}.keychain")
+      system("security create-keychain -p tug #{name}.keychain")
     end
 
     def delete_keychain
-      system("security delete-keychain #{keychain_name}.keychain")
+      system("security delete-keychain #{name}.keychain")
     end
 
     def import_apple_certificate
@@ -60,11 +62,7 @@ module Tug
     end
 
     def keychain_path
-      "#{File.expand_path('~')}/Library/Keychains/#{keychain_name}.keychain"
-    end
-
-    def keychain_name
-      "tug"
+      "#{File.expand_path('~')}/Library/Keychains/#{name}.keychain"
     end
   end
 end
