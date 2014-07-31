@@ -33,7 +33,7 @@ Run `tug ipa` from your Xcode projects root directory, see the example config be
 
 ### Config
 
-tug will look in the currenty directory for a `.tug.yml` config file by default, use the `--config` option to pass a path to your config file if it's in a different folder. 
+tug will look in the current directory for a `.tug.yml` config file by default, use the `--config` option to pass a path to your config file if it's in a different folder. 
 
 A sample config file:
 
@@ -44,6 +44,35 @@ project:
     - tug
   ipa_config: Release            # The configuration to use to build ipas
 ```
+
+### Provisioning
+
+Provisioning requires you to export the following files from your keychain and place them within your project directory:
+
+* Apple Worldwide Developer Relations Certificate
+* iPhone Distribution Certificate
+* iPhone Distribution Private Key
+* Distribution Provisioning Profile
+
+Run `tug provision` to provision a new machine ready for signing ipas, provisioning requires a `keychain` object in the config yaml file to specify the path to the provisioning certificates and profile:
+
+```
+keychain:
+  apple_certificate: certs/apple.cer
+  distribution_certificate: certs/dist.cer
+  distribution_profile: certs/profile.mobileprovision
+  private_key: certs/dist.p12
+```
+
+#### Private Key Password
+
+If your `.p12` private key requires a password, you can either set the environment variable:
+
+`$ export TUG_P12_PASSWORD=yourpassword`
+
+or use the `--password` option when running the provision command:
+
+`$ tug provision --password yourpassword`
 
 ## Contributing
 
