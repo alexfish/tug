@@ -8,13 +8,16 @@ module Tug
           Tug::BuildCommand.new
         when "ipa"
           Tug::IpaCommand.new
+        when "provision"
+          Tug::ProvisionCommand.new
         else
           Tug::Command.new
         end
       end
     end
 
-    def execute(project)
+    def execute(config_file)
+      project = config_file.project
       @xctool = xctool(project.ipa_config)
       project.schemes.each do |scheme|
         @xctool.build(project.workspace, scheme)

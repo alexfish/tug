@@ -2,6 +2,7 @@ module Tug
   class ConfigFile
 
     attr_reader :project
+    attr_reader :keychain
 
     class << self
       def config_file(path=default_path)
@@ -16,6 +17,7 @@ module Tug
     def initialize(path)
       config = YAML::load_file(path)
       @project = Tug::Project.new(config['project'])
+      @keychain = Tug::Keychain.keychain(config['keychain'])
     end
 
     private

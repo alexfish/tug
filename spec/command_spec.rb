@@ -21,5 +21,10 @@ describe Tug::Command do
       command = Tug::Command.command_for_string("hello")
       expect(command).to be_kind_of(Tug::Command)
     end
+
+    it "should return a provision command" do
+      command = Tug::Command.command_for_string("provision")
+      expect(command).to be_kind_of(Tug::ProvisionCommand)
+    end
   end
 end
