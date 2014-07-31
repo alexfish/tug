@@ -6,8 +6,7 @@ describe Tug::Keychain do
     @yaml = {"apple_certificate" => "apple", 
             "distribution_certificate" => "dist", 
             "distribution_profile" => "path/to/profile", 
-            "private_key" => "private", 
-            "private_key_password" => "password"}
+            "private_key" => "private"}
 
     @keychain = Tug::Keychain.keychain(@yaml)
     allow(@keychain).to receive(:system)
@@ -36,10 +35,6 @@ describe Tug::Keychain do
 
     it "should have a private key" do
       expect(@keychain.private_key).to be
-    end
-
-    it "should have a private key password" do
-      expect(@keychain.private_key_password).to be
     end
 
     it "should have a default keychain name" do
@@ -75,18 +70,26 @@ describe Tug::Keychain do
     end
 
     it "should import the private key" do
-      @yaml.delete("private_key_password")
+      ENV['TUG_P12_PASSWORD'] = nil
       @keychain = Tug::Keychain.keychain(@yaml)
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P ''")
       @keychain.import_private_key
     end
 
-    it "should import the private key with a password" do
-      @yaml["private_key_password"] = "password"
+    it "should import the private key with a password via env var" do
+      ENV['TUG_P12_PASSWORD'] = "password"
       @keychain = Tug::Keychain.keychain(@yaml)
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P 'password'")
+      @keychain.import_private_key
+    end
+
+    it "should import the private key with a password via setter" do
+      @keychain = Tug::Keychain.keychain(@yaml)
+      @keychain.private_key_password = "hello"
+
+      expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P 'hello'")
       @keychain.import_private_key
     end
   end

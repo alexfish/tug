@@ -20,9 +20,11 @@ module Tug
     desc "provision", "provision system distrubution certificates and provisioning profile"
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     option :keychain, :default => "tug", :aliases => "-k"
+    option :password, "password for a password protected p12 private key file", :aliases => "-p"
     def provision
       config_file = Tug::ConfigFile.config_file(options[:config])
       config_file.keychain.name = options[:keychain]
+      config_file.private_key_password = options[:password]
       execute(__method__.to_s, config_file)
     end
 

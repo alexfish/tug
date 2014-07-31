@@ -8,4 +8,3 @@ keychain:
   distribution_certificate: dist.cer
   distribution_profile: profile.mobileprovision
   private_key: dist.p12
-  private_key_password: password

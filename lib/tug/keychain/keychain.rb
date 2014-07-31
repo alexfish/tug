@@ -5,16 +5,12 @@ module Tug
     attr_reader :distribution_certificate
     attr_reader :distribution_profile
     attr_reader :private_key
-    attr_reader :private_key_password
+    attr_accessor :private_key_password
     attr_accessor :name
 
     class << self
       def keychain(keychain_yaml)
-        if keychain_yaml and keychain_yaml.has_key? "private_key_password"
-          Tug::ProtectedKeychain.new(keychain_yaml)
-        elsif keychain_yaml
-          Tug::Keychain.new(keychain_yaml)
-        end
+        Tug::Keychain.new(keychain_yaml)
       end
     end
 
@@ -23,7 +19,7 @@ module Tug
       @distribution_certificate   = keychain_yaml["distribution_certificate"]
       @distribution_profile       = keychain_yaml["distribution_profile"]
       @private_key                = keychain_yaml["private_key"]
-      @private_key_password       = keychain_yaml["private_key_password"]
+      @private_key_password       = ENV['TUG_P12_PASSWORD']
       @name                       = "tug"
     end
 
@@ -48,7 +44,7 @@ module Tug
     end
 
     def import_private_key
-      system(import_command(private_key) + " -P ''")
+      system(import_command(private_key) + " -P '#{private_key_password}'")
     end
 
     def import_profile
