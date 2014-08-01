@@ -6,7 +6,8 @@ module Tug
     attr_reader   :ipa_config
     attr_accessor :ipa_export_path
 
-    def initialize(project_yaml)
+    def initialize(config)
+      project_yaml      = config['project']
       @schemes          = project_yaml['schemes']
       @workspace        = project_yaml['workspace']
       @ipa_config       = project_yaml['ipa_config']

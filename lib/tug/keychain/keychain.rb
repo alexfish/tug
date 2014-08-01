@@ -9,8 +9,10 @@ module Tug
     attr_accessor :name
 
     class << self
-      def keychain(keychain_yaml)
-        Tug::Keychain.new(keychain_yaml)
+      def keychain(config)
+        if config.has_key?("keychain")
+          Tug::Keychain.new(config["keychain"])
+        end
       end
     end
 

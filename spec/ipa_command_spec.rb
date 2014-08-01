@@ -10,7 +10,7 @@ describe Tug::IpaCommand do
       allow(FileUtils).to receive(:mv)
 
       yaml = project_yaml
-      yaml["ipa_config"] = "InHouse"
+      yaml["project"]["ipa_config"] = "InHouse"
       @project = Tug::Project.new(yaml)
 
       @config = double(Tug::ConfigFile)

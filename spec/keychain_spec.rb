@@ -3,20 +3,19 @@ require "spec_helper"
 describe Tug::Keychain do 
 
   before(:each) do
-    @yaml = {"apple_certificate" => "apple", 
-            "distribution_certificate" => "dist", 
-            "distribution_profile" => "path/to/profile", 
-            "private_key" => "private"}
+    @yaml = keychain_yaml
 
     @keychain = Tug::Keychain.keychain(@yaml)
     allow(@keychain).to receive(:system)
   end
 
   describe "when returning keychains" do
-    it "should return a keychian" do
+    it "should return a keychain" do
+      expect(@keychain).to be
     end
 
-    it "should return a protected keychain if password is missing" do
+    it "shouldn't return one for invalid config" do
+      expect(Tug::Keychain.keychain({})).to be_nil
     end
   end
 
