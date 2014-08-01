@@ -2,10 +2,17 @@ require "tug"
 
 module Helpers
   def project_yaml
-    {"workspace" => "workspace",
+    {"project" => {"workspace" => "workspace",
       "schemes" => ["scheme"],
       "ipa_config" => "config",
-      "ipa_profile" => "profile"}
+      "ipa_profile" => "profile"}}
+  end
+
+  def keychain_yaml
+    {"keychain" => {"apple_certificate" => "apple", 
+            "distribution_certificate" => "dist", 
+            "distribution_profile" => "path/to/profile", 
+            "private_key" => "private"}}
   end
 end
 
