@@ -6,6 +6,8 @@ module Tug
 
       keychain.create_keychain
       keychain.select_keychain(keychain.name)
+      keychain.unlock_keychain
+      keychain.set_timeout
       keychain.import_apple_certificate
       keychain.import_distribution_certificate
       keychain.import_private_key
