@@ -28,6 +28,14 @@ module Tug
       execute(__method__.to_s, config_file)
     end
 
+    desc "deploy", "deploy an ipa to an external service"
+    option :path, :default => "#{Dir.pwd}", :aliases => "-p"
+    option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
+    def deploy
+      config_file = Tug::ConfigFile.config_file(options[:config])
+      execute(__method__.to_s, config_file)
+    end
+
     no_commands do
       def execute(command, config_file)
         command = Tug::Command.command_for_string(command)
