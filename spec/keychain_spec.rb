@@ -58,6 +58,16 @@ describe Tug::Keychain do
       @keychain.delete_keychain
     end
 
+    it "should unlock the keychain" do
+      expect(@keychain).to receive(:system).with("security unlock-keychain -p tug tug.keychain")
+      @keychain.unlock_keychain
+    end
+
+    it "should set a timeout" do
+      expect(@keychain).to receive(:system).with("security set-keychain-settings -t 3600 -u tug.keychain")
+      @keychain.set_timeout
+    end
+
     it "should import the apple certificate" do
       expect(@keychain).to receive(:system).with("security import apple -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign")
       @keychain.import_apple_certificate

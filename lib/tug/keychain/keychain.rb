@@ -37,6 +37,14 @@ module Tug
       system("security delete-keychain #{name}.keychain")
     end
 
+    def unlock_keychain
+      system("security unlock-keychain -p tug #{name}.keychain")
+    end
+
+    def set_timeout
+      system("security set-keychain-settings -t 3600 -u #{name}.keychain")
+    end
+
     def import_apple_certificate
       system(import_command(apple_certificate))
     end
