@@ -1,25 +1,24 @@
 module Tug
   class Deployer
 
-    attr_accessor :ipa
-    attr_accessor :api_token
-    attr_accessor :team_token
-    attr_accessor :lists
-    attr_accessor :notify
+    attr_reader :ipa
+    attr_reader :api_token
+    attr_reader :team_token
+    attr_reader :lists
+    attr_reader :notify
 
     class << self
-      def deployer(config)
-        Tug::Deployer.new(config)
+      def deployer(options)
+        Tug::Deployer.new(options)
       end
     end
 
-    def initialize(config)
-      # these defaults also set in the Interface
-      @ipa = Dir.glob("*.ipa")
-      @lists = ""
-      @notify = false
-      @api_token = ENV['TUG_TESTFLIGHT_API_TOKEN']
-      @team_token = ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
+    def initialize(options)
+      @ipa        = options[:file]
+      @lists      = options[:lists]
+      @notify     = options[:notify]
+      @api_token  = options[:api_token]
+      @team_token = options[:team_token]
     end
 
     def deploy

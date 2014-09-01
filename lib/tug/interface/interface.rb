@@ -10,13 +10,8 @@ module Tug
     option :lists, :aliases => "-l"
     option :notify, :aliases => "-n", :default => false
     def testflight
-      config_file = Tug::ConfigFile.config_file(options[:config])
-      config_file.deployer.api_token = options[:api_token]
-      config_file.deployer.team_token = options[:team_token]
-      config_file.deployer.ipa = options[:file]
-      config_file.deployer.lists = options[:lists]
-      config_file.deployer.notify = options[:notify]
-      execute(config_file)
+      deployer = Tug::Deployer.deployer(options)
+      deployer.deploy
     end
 
     no_commands do

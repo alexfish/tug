@@ -8,7 +8,6 @@ require "tug/command/command"
 require "tug/command/build_command"
 require "tug/command/ipa_command"
 require "tug/command/provision_command"
-require "tug/command/deploy_command"
 
 require "tug/interface/interface"
 

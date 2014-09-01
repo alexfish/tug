@@ -26,10 +26,5 @@ describe Tug::Command do
       command = Tug::Command.command_for_string("provision")
       expect(command).to be_kind_of(Tug::ProvisionCommand)
     end
-
-    it "should return a deploy command" do
-      command = Tug::Command.command_for_string("deploy")
-      expect(command).to be_kind_of(Tug::DeployCommand)
-    end
   end
 end

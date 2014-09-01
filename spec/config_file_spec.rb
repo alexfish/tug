@@ -32,9 +32,5 @@ describe Tug::ConfigFile do
     it "should load a keychain" do
       expect(@config_file.keychain).to be
     end
-
-    it "should load a deployer" do
-      expect(@config_file.deployer).to be
-    end
   end
 end
