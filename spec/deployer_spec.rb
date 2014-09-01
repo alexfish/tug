@@ -26,6 +26,8 @@ describe Tug::Deployer do
 
     before(:each) do
       @deployer.ipa = "test.ipa"
+      @deployer.team_token = "team_token"
+      @deployer.api_token = "api_token"
     end
 
     it "should send to testflight by default" do
@@ -35,6 +37,21 @@ describe Tug::Deployer do
 
     it "should send the ipa as a param" do
       expect(IO).to receive(:popen).with(/-F file=@test.ipa/)
+      @deployer.deploy
+    end
+
+    it "should send the team token as a param" do
+      expect(IO).to receive(:popen).with(/-F team_token='team_token'/)
+      @deployer.deploy
+    end
+
+    it "should send the api token as a param" do
+      expect(IO).to receive(:popen).with(/-F api_token='api_token'/)
+      @deployer.deploy
+    end
+
+    it "should have some release notes" do
+      expect(IO).to receive(:popen).with(/-F notes='This build was uploaded via Tug'/)
       @deployer.deploy
     end
   end
