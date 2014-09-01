@@ -59,5 +59,17 @@ describe Tug::Deployer do
       expect(IO).to receive(:popen).with(/-F distribution_lists=''/)
       @deployer.deploy
     end
+
+    it "should not notify by default" do
+      expect(IO).to receive(:popen).with(/-F notify=false/)
+      @deployer.deploy
+    end
+
+    it "should notify" do
+      @deployer.notify = true
+
+      expect(IO).to receive(:popen).with(/-F notify=true/)
+      @deployer.deploy
+    end
   end
 end

@@ -5,6 +5,7 @@ module Tug
     attr_accessor :api_token
     attr_accessor :team_token
     attr_accessor :lists
+    attr_accessor :notify
 
     class << self
       def deployer(config)
@@ -14,10 +15,10 @@ module Tug
 
     def initialize(config)
       @lists = ""
+      @notify = false
     end
 
     def deploy
-      puts "curl #{url} -X POST -# #{params}"
       IO.popen("curl #{url} -X POST -# #{params}") do |pipe|
         puts pipe.read
       end
@@ -38,7 +39,8 @@ module Tug
       params += "-F api_token='#{api_token}' "
       params += "-F team_token='#{team_token}' "
       params += "-F notes='#{notes}' "
-      params += "-F distribution_lists='#{lists}'"
+      params += "-F distribution_lists='#{lists}' "
+      params += "-F notify=#{notify}"
     end
   end
 end
