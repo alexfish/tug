@@ -54,5 +54,10 @@ describe Tug::Deployer do
       expect(IO).to receive(:popen).with(/-F notes='This build was uploaded via Tug'/)
       @deployer.deploy
     end
+
+    it "should have lists" do
+      expect(IO).to receive(:popen).with(/-F distribution_lists=''/)
+      @deployer.deploy
+    end
   end
 end

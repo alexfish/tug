@@ -7,8 +7,13 @@ module Tug
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     option :api_token, :aliases => "-a", :required => true
     option :team_token, :aliases => "-t", :required => true
+    option :lists, :aliases => "-l"
     def testflight
       config_file = Tug::ConfigFile.config_file(options[:config])
+      config_file.deployer.api_token = options[:api_token]
+      config_file.deployer.team_token = options[:team_token]
+      config_file.deployer.ipa = options[:file]
+      config_file.deployer.lists = options[:lists]
       execute(config_file)
     end
 
@@ -19,7 +24,7 @@ module Tug
       end
     end
   end
-  
+
   class Interface < Thor
 
     desc "build", "build a project"
