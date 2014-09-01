@@ -22,3 +22,5 @@ require "tug/tool/xctool_build"
 require "tug/tool/xctool_archive"
 
 require "tug/keychain/keychain"
+
+require "tug/deployment/deployer"

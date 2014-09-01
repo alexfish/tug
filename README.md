@@ -21,17 +21,7 @@ Or install it yourself as:
 
     $ gem install tug
 
-## Usage
-
-### Build
-
-Run `tug build` from your Xcode projects root directory. Each scheme in the scheme config array will be built.
-
-### IPA
-
-Run `tug ipa` from your Xcode projects root directory, see the example config below for details on how to set a configuration and profile name. An ipa will be generated for each scheme in the config's scheme array.
-
-### Config
+## Config
 
 tug will look in the current directory for a `.tug.yml` config file by default, use the `--config` option to pass a path to your config file if it's in a different folder. 
 
@@ -45,7 +35,85 @@ project:
   ipa_config: Release            # The configuration to use to build ipas
 ```
 
-### Provisioning
+
+## Commands
+
+### Build
+
+Build from your Xcode projects root directory. Each scheme in the scheme config array will be built.
+
+```
+$ tug build
+```
+
+##### Options
+
+```
+-c, [--config=CONFIG]     # the tug config file to use (optional, defaults to .tug.yml)
+```
+
+### IPA
+
+Generate an ipa from your Xcode projects root directory, see the example config below for details on how to set a configuration and profile name. An ipa will be generated for each scheme in the config's scheme array.
+
+```
+$ tug ipa
+```
+
+##### Options
+
+```
+-c, [--config=CONFIG]     # the tug config file to use (optional, defaults to .tug.yml)
+-e, [--export=EXPORT]     # the directory to export the .ipa to (optional, defaults to current directory)
+```
+
+### Deploy
+
+Distrubute your builds to external services using the `deploy` command
+
+#### Testflight
+
+```
+$ tug ipa
+$ tug deploy testflight
+```
+
+
+###### Options
+
+```
+-f, [--file=FILE]               # path to an ipa to deploy (optional, searches current directory by default)
+-a, [--api-token=API_TOKEN]     # testflight api token (optional, environmental variable by default)
+-t, [--team-token=TEAM_TOKEN]   # testflight tea, token (optional, environmental variable by default)
+-l, [--lists=LISTS]             # testflight distrubution lists to send the buld to (optional, defaults to none)
+-n, [--notify=NOTIFY]           # notify testflight users of the new build (optional, defaults to false)
+```
+
+> 
+> The following environment variables are used to set your testflight API and team tokens
+> * `TUG_TESTFLIGHT_API_KEY`
+> * `TUG_TESTFLIGHT_TEAM_KEY`
+
+### Provision
+
+Tug can provision a new machine ready for signing ipas by installing the certificates and provisioning profile required for generating a signed ipa of your application, this is very useful for CI environments like Travis. 
+
+```
+$ tug provision
+```
+
+##### Options
+
+```
+-c, [--config=CONFIG]           # the tug config file to use (optional, defaults to .tug.yml)
+-k, [--keychain=KEYCHAIN]       # the keychain to install the certificates to (optional, defaults to tug)
+-p, [--password=PASSWORD]       # the password required to access your .p12 private key (optional, environment variable by default)
+```
+
+> The following environment variable is used to set your .p12 private key password
+> * `TUG_P12_PASSWORD`
+
+#### Config 
 
 Provisioning requires you to export the following files from your keychain and place them within your project directory:
 
@@ -54,7 +122,7 @@ Provisioning requires you to export the following files from your keychain and p
 * iPhone Distribution Private Key
 * Distribution Provisioning Profile
 
-Run `tug provision` to provision a new machine ready for signing ipas, provisioning requires a `keychain` object in the config yaml file to specify the path to the provisioning certificates and profile:
+Provisioning also requires a `keychain` object in the config yaml file to specify the path to the exported provisioning certificates and profile:
 
 ```
 keychain:
@@ -64,15 +132,6 @@ keychain:
   private_key: certs/dist.p12
 ```
 
-#### Private Key Password
-
-If your `.p12` private key requires a password, you can either set the environment variable:
-
-`$ export TUG_P12_PASSWORD=yourpassword`
-
-or use the `--password` option when running the provision command:
-
-`$ tug provision --password yourpassword`
 
 ## Contributing
 

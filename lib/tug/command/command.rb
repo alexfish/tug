@@ -10,6 +10,8 @@ module Tug
           Tug::IpaCommand.new
         when "provision"
           Tug::ProvisionCommand.new
+        when "deploy"
+          Tug::DeployCommand.new
         else
           Tug::Command.new
         end
