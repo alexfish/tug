@@ -14,6 +14,8 @@ module Tug
     end
 
     def initialize(config)
+      # these defaults also set in the Interface
+      @ipa = Dir.glob("*.ipa")
       @lists = ""
       @notify = false
       @api_token = ENV['TUG_TESTFLIGHT_API_TOKEN']

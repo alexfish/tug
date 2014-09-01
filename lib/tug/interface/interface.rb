@@ -3,12 +3,12 @@ module Tug
   class Deploy < Thor
 
     desc "testflight", "deploy an ipa to testflight"
-    option :file, :aliases => "-f", :required => true
+    option :file, :aliases => "-f", :default => Dir.glob("*.ipa").first
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
-    option :api_token, :aliases => "-a"
-    option :team_token, :aliases => "-t"
+    option :api_token, :aliases => "-a", :default => ENV['TUG_TESTFLIGHT_API_TOKEN']
+    option :team_token, :aliases => "-t", :default => ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
     option :lists, :aliases => "-l"
-    option :notify, :aliases => "-n"
+    option :notify, :aliases => "-n", :default => false
     def testflight
       config_file = Tug::ConfigFile.config_file(options[:config])
       config_file.deployer.api_token = options[:api_token]
@@ -48,7 +48,7 @@ module Tug
     desc "provision", "provision system distrubution certificates and provisioning profile"
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     option :keychain, :default => "tug", :aliases => "-k"
-    option :password, :aliases => "-p"
+    option :password, :aliases => "-p", :default => ENV['TUG_P12_PASSWORD']
     def provision
       config_file = Tug::ConfigFile.config_file(options[:config])
       config_file.keychain.name = options[:keychain]

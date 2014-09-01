@@ -21,6 +21,8 @@ module Tug
       @distribution_certificate   = keychain_yaml["distribution_certificate"]
       @distribution_profile       = keychain_yaml["distribution_profile"]
       @private_key                = keychain_yaml["private_key"]
+
+      # these defaults are also set in Interface
       @private_key_password       = ENV['TUG_P12_PASSWORD']
       @name                       = "tug"
     end
