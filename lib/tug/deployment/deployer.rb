@@ -16,6 +16,8 @@ module Tug
     def initialize(config)
       @lists = ""
       @notify = false
+      @api_token = ENV['TUG_TESTFLIGHT_API_TOKEN']
+      @team_token = ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
     end
 
     def deploy

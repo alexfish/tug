@@ -50,6 +50,22 @@ describe Tug::Deployer do
       @deployer.deploy
     end
 
+    it "should send the team token ENV VAR as a param" do
+      ENV['TUG_TESTFLIGHT_TEAM_TOKEN'] = "new_team_token"
+      deployer = Tug::Deployer.deployer(@config)
+
+      expect(IO).to receive(:popen).with(/-F team_token='new_team_token'/)
+      deployer.deploy
+    end
+
+    it "should send the api token ENV VAR as a param" do
+      ENV['TUG_TESTFLIGHT_API_TOKEN'] = "new_api_token"
+      deployer = Tug::Deployer.deployer(@config)
+
+      expect(IO).to receive(:popen).with(/-F api_token='new_api_token'/)
+      deployer.deploy
+    end
+
     it "should have some release notes" do
       expect(IO).to receive(:popen).with(/-F notes='This build was uploaded via Tug'/)
       @deployer.deploy

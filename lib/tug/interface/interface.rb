@@ -5,8 +5,8 @@ module Tug
     desc "testflight", "deploy an ipa to testflight"
     option :file, :aliases => "-f", :required => true
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
-    option :api_token, :aliases => "-a", :required => true
-    option :team_token, :aliases => "-t", :required => true
+    option :api_token, :aliases => "-a"
+    option :team_token, :aliases => "-t"
     option :lists, :aliases => "-l"
     option :notify, :aliases => "-n"
     def testflight
