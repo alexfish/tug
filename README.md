@@ -122,7 +122,7 @@ Provisioning requires you to export the following files from your keychain and p
 * iPhone Distribution Private Key
 * Distribution Provisioning Profile
 
-Provisioning also requires a `keychain` object in the config yaml file to specify the path to the provisioning certificates and profile:
+Provisioning also requires a `keychain` object in the config yaml file to specify the path to the exported provisioning certificates and profile:
 
 ```
 keychain:
