@@ -4,7 +4,6 @@ module Tug
 
     desc "testflight", "deploy an ipa to testflight"
     option :file, :aliases => "-f", :default => Dir.glob("*.ipa").first
-    option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     option :api_token, :aliases => "-a", :default => ENV['TUG_TESTFLIGHT_API_TOKEN']
     option :team_token, :aliases => "-t", :default => ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
     option :lists, :aliases => "-l"
