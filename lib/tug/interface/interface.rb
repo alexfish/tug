@@ -29,7 +29,7 @@ module Tug
     end
 
     desc "deploy", "deploy an ipa to an external service"
-    option :path, :default => "#{Dir.pwd}", :aliases => "-p"
+    option :path, :aliases => "-p"
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     def deploy
       config_file = Tug::ConfigFile.config_file(options[:config])

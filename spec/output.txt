@@ -1,2 +1,0 @@
-Config file missing:
-  Try specifying a path to your config file with the --config option
