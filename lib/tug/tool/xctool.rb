@@ -6,7 +6,7 @@ module Tug
     class << self
       def tool_for_config(config)
         case config.downcase
-        when "inhouse", "release"
+        when "inhouse", "release", /release/, /inhouse/
           Tug::XCToolArchive.new(config)
         else
           Tug::XCToolBuild.new(config)
