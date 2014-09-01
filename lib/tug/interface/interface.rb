@@ -1,4 +1,25 @@
 module Tug
+
+  class Deploy < Thor
+
+    desc "testflight", "deploy an ipa to testflight"
+    option :file, :aliases => "-f", :required => true
+    option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
+    option :api_token, :aliases => "-a", :required => true
+    option :team_token, :aliases => "-t", :required => true
+    def testflight
+      config_file = Tug::ConfigFile.config_file(options[:config])
+      execute(config_file)
+    end
+
+    no_commands do
+      def execute(config_file)
+        command = Tug::Command.command_for_string("deploy")
+        command.execute(config_file)
+      end
+    end
+  end
+  
   class Interface < Thor
 
     desc "build", "build a project"
@@ -29,14 +50,7 @@ module Tug
     end
 
     desc "deploy", "deploy an ipa to an external service"
-    option :file, :aliases => "-f", :required => true
-    option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
-    option :api_token, :aliases => "-a", :required => true
-    option :team_token, :aliases => "-t", :required => true
-    def deploy
-      config_file = Tug::ConfigFile.config_file(options[:config])
-      execute(__method__.to_s, config_file)
-    end
+    subcommand "deploy", Deploy
 
     no_commands do
       def execute(command, config_file)
