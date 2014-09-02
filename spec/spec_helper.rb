@@ -14,6 +14,10 @@ module Helpers
             "distribution_profile" => "path/to/profile", 
             "private_key" => "private"}}
   end
+
+  def release_notes_path
+    File.join(File.dirname(__FILE__), 'test_notes.txt')
+  end
 end
 
 RSpec.configure do |config|

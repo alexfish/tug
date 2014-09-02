@@ -6,6 +6,7 @@ module Tug
     attr_reader :team_token
     attr_reader :lists
     attr_reader :notify
+    attr_reader :notes
 
     class << self
       def deployer(options)
@@ -19,6 +20,7 @@ module Tug
       @notify     = options[:notify]
       @api_token  = options[:api_token]
       @team_token = options[:team_token]
+      self.notes  = options[:release_notes]
     end
 
     def deploy
@@ -27,14 +29,15 @@ module Tug
       end
     end
 
+    def notes=(notes)
+      parser = Tug::NotesParser.notes_parser(notes)
+      @notes = parser.notes
+    end
+
     private
 
     def url
       "http://testflightapp.com/api/builds.json"
-    end
-
-    def notes
-      "This build was uploaded via Tug"
     end
 
     def params
