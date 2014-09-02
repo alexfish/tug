@@ -8,6 +8,7 @@ module Tug
     option :team_token, :aliases => "-t", :default => ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
     option :lists, :aliases => "-l"
     option :notify, :aliases => "-n", :default => false
+    option :release_notes, :aliases => "-r", :default => "This build was uploaded via Tug"
     def testflight
       deployer = Tug::Deployer.deployer(options)
       deployer.deploy

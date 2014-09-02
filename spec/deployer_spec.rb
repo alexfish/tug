@@ -7,7 +7,8 @@ describe Tug::Deployer do
       :api_token => "api_token",
       :team_token => "team_token",
       :file => "test.ipa",
-      :notify => true
+      :notify => true,
+      :release_notes => "Notes"
     }
 
     @deployer = Tug::Deployer.deployer(@options)
@@ -42,7 +43,7 @@ describe Tug::Deployer do
     end
 
     it "should have some release notes" do
-      expect(IO).to receive(:popen).with(/-F notes='This build was uploaded via Tug'/)
+      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
       @deployer.deploy
     end
 
