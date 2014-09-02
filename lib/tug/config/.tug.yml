@@ -2,7 +2,6 @@ project:
   workspace: tug.xcworkspace
   schemes:
     - tug
-  ipa_config: InHouse
 keychain:
   apple_certificate: apple.cer
   distribution_certificate: dist.cer

@@ -17,6 +17,7 @@ describe Tug::Project do
     end
 
     it "should have an ipa config" do
+      @project.ipa_config = "config"
       expect(@project.ipa_config).to match("config")
     end
 
