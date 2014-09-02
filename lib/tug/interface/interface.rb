@@ -34,9 +34,11 @@ module Tug
     desc "ipa", "generate an ipa"
     option :config, :default => "#{Dir.pwd}/.tug.yml", :aliases => "-c"
     option :export, :default => "#{Dir.pwd}", :aliases => "-e"
+    option :build_config, :default => "Release", :aliases => "-b"
     def ipa
       config_file = Tug::ConfigFile.config_file(options[:config])
       config_file.project.ipa_export_path = options[:export]
+      config_file.project.ipa_config = options[:build_config]
       execute(__method__.to_s, config_file)
     end
 

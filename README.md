@@ -32,7 +32,6 @@ project:
   workspace: tug.xcworkspace     # Path to the project workspace
   schemes:                       # An array of schemes to build
     - tug
-  ipa_config: Release            # The configuration to use to build ipas
 ```
 
 
@@ -63,8 +62,9 @@ $ tug ipa
 ##### Options
 
 ```
--c, [--config]     # the tug config file to use (optional, defaults to .tug.yml)
--e, [--export]     # the directory to export the .ipa to (optional, defaults to current directory)
+-c, [--config]        # the tug config file to use (optional, defaults to .tug.yml)
+-e, [--export]        # the directory to export the .ipa to (optional, defaults to current directory)
+-b, [--build-config]  # the xcode config to use to build the ipa (optional, defaults to Release)
 ```
 
 ### Deploy
