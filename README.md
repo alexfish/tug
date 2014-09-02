@@ -49,7 +49,7 @@ $ tug build
 ##### Options
 
 ```
--c, [--config=CONFIG]     # the tug config file to use (optional, defaults to .tug.yml)
+-c, [--config]     # the tug config file to use (optional, defaults to .tug.yml)
 ```
 
 ### IPA
@@ -63,8 +63,8 @@ $ tug ipa
 ##### Options
 
 ```
--c, [--config=CONFIG]     # the tug config file to use (optional, defaults to .tug.yml)
--e, [--export=EXPORT]     # the directory to export the .ipa to (optional, defaults to current directory)
+-c, [--config]     # the tug config file to use (optional, defaults to .tug.yml)
+-e, [--export]     # the directory to export the .ipa to (optional, defaults to current directory)
 ```
 
 ### Deploy
@@ -82,11 +82,12 @@ $ tug deploy testflight
 ###### Options
 
 ```
--f, [--file=FILE]               # path to an ipa to deploy (optional, searches current directory by default)
--a, [--api-token=API_TOKEN]     # testflight api token (optional, environmental variable by default)
--t, [--team-token=TEAM_TOKEN]   # testflight tea, token (optional, environmental variable by default)
--l, [--lists=LISTS]             # testflight distrubution lists to send the buld to (optional, defaults to none)
--n, [--notify=NOTIFY]           # notify testflight users of the new build (optional, defaults to false)
+-f, [--file]          # path to an ipa to deploy (optional, searches current directory by default)
+-a, [--api-token]     # testflight api token (optional, environmental variable by default)
+-t, [--team-token]    # testflight tea, token (optional, environmental variable by default)
+-l, [--lists]         # testflight distrubution lists to send the buld to (optional, defaults to none)
+-n, [--notify]        # notify testflight users of the new build (optional, defaults to false)
+-r, [--release-notes] # release notes for the build, can be plain text or a path to a file (optional)
 ```
 
 > 
@@ -105,9 +106,9 @@ $ tug provision
 ##### Options
 
 ```
--c, [--config=CONFIG]           # the tug config file to use (optional, defaults to .tug.yml)
--k, [--keychain=KEYCHAIN]       # the keychain to install the certificates to (optional, defaults to tug)
--p, [--password=PASSWORD]       # the password required to access your .p12 private key (optional, environment variable by default)
+-c, [--config]         # the tug config file to use (optional, defaults to .tug.yml)
+-k, [--keychain]       # the keychain to install the certificates to (optional, defaults to tug)
+-p, [--password]       # the password required to access your .p12 private key (optional, environment variable by default)
 ```
 
 > The following environment variable is used to set your .p12 private key password
