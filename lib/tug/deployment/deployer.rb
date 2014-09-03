@@ -1,26 +1,17 @@
 module Tug
   class Deployer
 
-    attr_reader :ipa
+    attr_reader :file
     attr_reader :api_token
-    attr_reader :team_token
-    attr_reader :lists
-    attr_reader :notify
     attr_reader :notes
-
-    class << self
-      def deployer(options)
-        Tug::Deployer.new(options)
-      end
-    end
+    attr_reader :notify
 
     def initialize(options)
-      @ipa        = options[:file]
-      @lists      = options[:lists]
-      @notify     = options[:notify]
+      @file       = options[:file]
       @api_token  = options[:api_token]
-      @team_token = options[:team_token]
-      self.notes  = options[:release_notes]
+      @notify     = options[:notify]
+
+      self.notes   = options[:release_notes]
     end
 
     def deploy
@@ -37,16 +28,12 @@ module Tug
     private
 
     def url
-      "http://testflightapp.com/api/builds.json"
+      ""
     end
 
     def params
-      params = "-F file=@#{ipa} "
-      params += "-F api_token='#{api_token}' "
-      params += "-F team_token='#{team_token}' "
-      params += "-F notes='#{notes}' "
-      params += "-F distribution_lists='#{lists}' "
-      params += "-F notify=#{notify}"
+      params = "-F notes='#{notes}' "
+      params += "-F notify=#{notify} "
     end
   end
 end

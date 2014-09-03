@@ -95,6 +95,37 @@ $ tug deploy testflight
 > * `TUG_TESTFLIGHT_API_KEY`
 > * `TUG_TESTFLIGHT_TEAM_KEY`
 
+#### Hockeyapp
+
+```
+$ tug ipa
+$ tug deploy hockeyapp
+```
+
+###### Options
+
+```
+-f, [--file]              # path to an ipa to deploy (optional, searches current directory by default)
+-a, [--api-token]         # hockeyapp api key (optional, environmental variable by default)
+-n, [--notify]            # notify users of the new build (optional, defaults to 0)
+-r, [--release-notes]     # release notes for the build, can be plain text or a path to a file (optional)
+-y, [--notes-type]        # the format of the notes (optional, defaults to 1 for markdown)
+-s, [--status]            # the hockeyapp download status (optional)
+-t, [--tags]              # restrict the download to a list of hockeyapp tags (optional)
+-e, [--teams]             # restirct the download to a list of hockeyapp teams (optional)
+-u, [--users]             # restirct the download to a list of hockeyapp user ids (optional)
+-m, [--mandatory]         # set as a mandatory build (optional)
+-l, [--release-type]      # set the type of the release (optiona, defaults to 0 for beta)
+-p, [--private]           # set if the build is private (optional, defaults to false)
+-h, [--commit-sha]        # set the sha associated with this build (optional)
+-u, [--build-server-url]  # set the URL of the build that generated the ipa (optional)
+-p, [--repository-url]    # set the URL of the repo associated with the project (optional)
+```
+
+> 
+> The following environment variable is used to set your hockeyapp API key
+> * `TUG_HOCKEYAPP_API_KEY`
+
 ### Provision
 
 Tug can provision a new machine ready for signing ipas by installing the certificates and provisioning profile required for generating a signed ipa of your application, this is very useful for CI environments like Travis. 
