@@ -3,13 +3,11 @@ module Tug
 
     attr_reader :team_token
     attr_reader :lists
-    attr_reader :notify
 
     def initialize(options)
       super
 
       @lists      = options[:lists]
-      @notify     = options[:notify]
       @team_token = options[:team_token]
     end
 
@@ -21,10 +19,9 @@ module Tug
 
     def params
       params = super
+      params += "-F api_token='#{api_token}' "
       params += "-F team_token='#{team_token}' "
       params += "-F distribution_lists='#{lists}' "
-      params += "-F notify=#{notify}"
     end
-    
   end
 end

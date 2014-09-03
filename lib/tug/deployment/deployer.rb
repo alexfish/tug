@@ -4,6 +4,7 @@ module Tug
     attr_reader :file
     attr_reader :api_token
     attr_reader :notes
+    attr_reader :notify
 
     class << self
       def deployer(options)
@@ -16,8 +17,10 @@ module Tug
     end
 
     def initialize(options)
-      @file        = options[:file]
-      @api_token   = options[:api_token]
+      @file       = options[:file]
+      @api_token  = options[:api_token]
+      @notify     = options[:notify]
+
       self.notes   = options[:release_notes]
     end
 
@@ -40,8 +43,8 @@ module Tug
 
     def params
       params = "-F file=@#{file} "
-      params += "-F api_token='#{api_token}' "
       params += "-F notes='#{notes}' "
+      params += "-F notify=#{notify} "
     end
   end
 end

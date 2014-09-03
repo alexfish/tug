@@ -6,7 +6,8 @@ describe Tug::Deployer do
     @options = {
       :api_token => "api_token",
       :file => "test.ipa",
-      :release_notes => "Notes"
+      :release_notes => "Notes",
+      :notify => 1
     }
 
     @deployer = Tug::Deployer.deployer(@options)
@@ -30,13 +31,13 @@ describe Tug::Deployer do
       @deployer.deploy
     end
 
-    it "should send the api token as a param" do
-      expect(IO).to receive(:popen).with(/-F api_token='api_token'/)
+    it "should have some release notes" do
+      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
       @deployer.deploy
     end
 
-    it "should have some release notes" do
-      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
+    it "should notify" do
+      expect(IO).to receive(:popen).with(/-F notify=1/)
       @deployer.deploy
     end
   end
