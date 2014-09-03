@@ -31,7 +31,7 @@ module Tug
            :default => Dir.glob("*.ipa").first
     option :api_token, 
            :aliases => "-a", 
-           :default => ENV['TUG_TESTFLIGHT_API_TOKEN']
+           :default => ENV['TUG_HOCKEYAPP_API_TOKEN']
     option :notify, 
            :aliases => "-n", 
            :default => 0
