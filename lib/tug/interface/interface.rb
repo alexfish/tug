@@ -50,7 +50,7 @@ module Tug
     option :users, 
            :aliases => "-u"
     option :mandatory,
-           :alisaes => "-m"
+           :aliases => "-m"
     option :release_type,
            :aliases => "-l",
            :default => 0
