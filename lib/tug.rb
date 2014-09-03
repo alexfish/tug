@@ -24,5 +24,6 @@ require "tug/tool/xctool_archive"
 require "tug/keychain/keychain"
 
 require "tug/deployment/deployer"
+require "tug/deployment/testflight"
 require "tug/deployment/notes_parser"
 require "tug/deployment/notes_file_parser"
