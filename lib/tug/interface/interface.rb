@@ -65,6 +65,7 @@ module Tug
            :aliases => "-p"
     def hockeyapp
       deployer = Tug::Hockeyapp.new(options)
+      deployer.deploy
     end
 
     no_commands do
