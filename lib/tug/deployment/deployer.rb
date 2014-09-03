@@ -32,8 +32,7 @@ module Tug
     end
 
     def params
-      params = "-F file=@#{file} "
-      params += "-F notes='#{notes}' "
+      params = "-F notes='#{notes}' "
       params += "-F notify=#{notify} "
     end
   end

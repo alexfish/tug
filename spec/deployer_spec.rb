@@ -15,11 +15,6 @@ describe Tug::Deployer do
 
   describe "when deploying" do
 
-    it "should send the ipa as a param" do
-      expect(IO).to receive(:popen).with(/-F file=@test.ipa/)
-      @deployer.deploy
-    end
-
     it "should have some release notes" do
       expect(IO).to receive(:popen).with(/-F notes='Notes'/)
       @deployer.deploy

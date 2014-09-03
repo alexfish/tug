@@ -37,6 +37,7 @@ module Tug
 
     def params
       params = super
+      params += "-F \"ipa=@#{file}\" "
       params += "-F \"teams=#{teams}\" "
       params += "-F \"users=#{users}\" "
       params += "-F \"mandatory=#{mandatory}\" "

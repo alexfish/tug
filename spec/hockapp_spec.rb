@@ -32,7 +32,7 @@ describe Tug::Hockeyapp do
     end
     
     it "should send the ipa as a param" do
-      expect(IO).to receive(:popen).with(/-F file=@test.ipa/)
+      expect(IO).to receive(:popen).with(/-F "ipa=@test.ipa"/)
       @deployer.deploy
     end
 
