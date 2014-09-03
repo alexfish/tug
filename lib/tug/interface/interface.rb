@@ -10,7 +10,7 @@ module Tug
     option :notify, :aliases => "-n", :default => false
     option :release_notes, :aliases => "-r", :default => "This build was uploaded via Tug"
     def testflight
-      deployer = Tug::Deployer.deployer(options)
+      deployer = Tug::Testflight.new(options)
       deployer.deploy
     end
 

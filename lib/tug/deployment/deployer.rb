@@ -6,16 +6,6 @@ module Tug
     attr_reader :notes
     attr_reader :notify
 
-    class << self
-      def deployer(options)
-        if options.has_key? :team_token
-          Tug::Testflight.new(options)
-        else
-          Tug::Deployer.new(options)
-        end
-      end
-    end
-
     def initialize(options)
       @file       = options[:file]
       @api_token  = options[:api_token]

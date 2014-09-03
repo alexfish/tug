@@ -25,5 +25,6 @@ require "tug/keychain/keychain"
 
 require "tug/deployment/deployer"
 require "tug/deployment/testflight"
+require "tug/deployment/hockeyapp"
 require "tug/deployment/notes_parser"
 require "tug/deployment/notes_file_parser"

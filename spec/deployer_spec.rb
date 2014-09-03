@@ -10,18 +10,7 @@ describe Tug::Deployer do
       :notify => 1
     }
 
-    @deployer = Tug::Deployer.deployer(@options)
-  end
-
-  describe "when returning a deployer" do
-    it "should return a default deployer" do
-      expect(Tug::Deployer.deployer(@options)).to be_kind_of(Tug::Deployer)
-    end
-
-    it "should return a testflight deployer" do
-      @options[:team_token] = "testflight_token"
-      expect(Tug::Deployer.deployer(@options)).to be_kind_of(Tug::Testflight)
-    end
+    @deployer = Tug::Deployer.new(@options)
   end
 
   describe "when deploying" do
