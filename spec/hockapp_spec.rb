@@ -18,7 +18,8 @@ describe Tug::Hockeyapp do
       :private => true,
       :commit_sha => "123",
       :build_server_url => "hello.com",
-      :repository_url => "world.com"
+      :repository_url => "world.com",
+      :dsym => "test.zip"
     }
 
     @deployer = Tug::Hockeyapp.new(@options)
@@ -33,6 +34,11 @@ describe Tug::Hockeyapp do
     
     it "should send the ipa as a param" do
       expect(IO).to receive(:popen).with(/-F "ipa=@test.ipa"/)
+      @deployer.deploy
+    end
+
+    it "should send the dsym as a param" do
+      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
       @deployer.deploy
     end
 

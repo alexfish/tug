@@ -7,7 +7,8 @@ describe Tug::Deployer do
       :api_token => "api_token",
       :file => "test.ipa",
       :release_notes => "Notes",
-      :notify => 1
+      :notify => 1,
+      :dsym => "test.zip"
     }
 
     @deployer = Tug::Deployer.new(@options)
@@ -22,6 +23,11 @@ describe Tug::Deployer do
 
     it "should notify" do
       expect(IO).to receive(:popen).with(/-F notify=1/)
+      @deployer.deploy
+    end
+
+    it "should send the dsym as a param" do
+      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
       @deployer.deploy
     end
   end
