@@ -6,6 +6,9 @@ module Tug
     option :file, 
            :aliases => "-f", 
            :default => Dir.glob("*.ipa").first
+    option :dsym, 
+           :aliases => "-d", 
+           :default => Dir.glob("*.dSYM.zip").first
     option :api_token, 
            :aliases => "-a", 
            :default => ENV['TUG_TESTFLIGHT_API_TOKEN']
@@ -29,6 +32,9 @@ module Tug
     option :file, 
            :aliases => "-f", 
            :default => Dir.glob("*.ipa").first
+    option :dsym, 
+           :aliases => "-d", 
+           :default => Dir.glob("*.dSYM.zip").first
     option :api_token, 
            :aliases => "-a", 
            :default => ENV['TUG_HOCKEYAPP_API_TOKEN']

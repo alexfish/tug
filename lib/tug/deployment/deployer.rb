@@ -2,6 +2,7 @@ module Tug
   class Deployer
 
     attr_reader :file
+    attr_reader :dsym
     attr_reader :api_token
     attr_reader :notes
     attr_reader :notify
@@ -10,6 +11,7 @@ module Tug
       @file       = options[:file]
       @api_token  = options[:api_token]
       @notify     = options[:notify]
+      @dsym       = options[:dsym]
 
       self.notes   = options[:release_notes]
     end
@@ -33,6 +35,7 @@ module Tug
 
     def params
       params = "-F notes='#{notes}' "
+      params += "-F dsym=@#{dsym} "
       params += "-F notify=#{notify} "
     end
   end

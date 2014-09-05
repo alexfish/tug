@@ -8,7 +8,8 @@ describe Tug::Testflight do
       :team_token => "team_token",
       :file => "test.ipa",
       :notify => true,
-      :release_notes => "Notes"
+      :release_notes => "Notes",
+      :dsym => "test.zip"
     }
 
     @deployer = Tug::Testflight.new(@options)
@@ -23,6 +24,11 @@ describe Tug::Testflight do
 
     it "should send the ipa as a param" do
       expect(IO).to receive(:popen).with(/-F file=@test.ipa/)
+      @deployer.deploy
+    end
+
+    it "should send the dsym as a param" do
+      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
       @deployer.deploy
     end
 
