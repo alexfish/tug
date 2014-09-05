@@ -1,7 +1,6 @@
 require "optparse"
 require 'yaml'
 require 'thor'
-require "rubyzip"
 
 require "tug/version"
 

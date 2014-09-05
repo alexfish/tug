@@ -5,7 +5,7 @@ module Tug
       super
       export_ipa(config_file.project)
       move_ipa(config_file.project)
-      move_dsym(config_file.project)
+      zip_and_move_dsym(config_file.project)
     end
 
     private
@@ -23,10 +23,18 @@ module Tug
       end
     end
 
-    def move_dsym(project)
+    def zip_and_move_dsym(project)
       project.schemes.each do |scheme|
-        FileUtils.mv "/tmp/#{scheme}.xcarchive/dSYMs/#{scheme}.app.dSYM", "#{project.ipa_export_path}/#{scheme}.app.dSYM"
+        zipfile = zip_file "/tmp/#{scheme}.xcarchive/dSYMs", "#{scheme}.app.dSYM"  
+        FileUtils.mv zipfile, "#{project.ipa_export_path}/#{scheme}.app.dSYM.zip"     
       end
+    end
+
+    def zip_file(folder, file)
+      file_name = file.split("/").last
+      system("cd #{folder} && zip -r #{file + ".zip"} #{file}")
+
+      return folder + "/" + file + ".zip"
     end
   end
 end

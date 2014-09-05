@@ -8,6 +8,7 @@ describe Tug::IpaCommand do
       allow_any_instance_of(Tug::XcodeBuild).to receive(:system)
       allow_any_instance_of(Tug::XCTool).to receive(:system)
       allow(FileUtils).to receive(:mv)
+      allow(@command).to receive(:system)
 
       yaml = project_yaml
       @project = Tug::Project.new(yaml)
@@ -27,15 +28,20 @@ describe Tug::IpaCommand do
       @command.execute(@config)
     end
 
-    it "should move the dsym file into the export path location" do
+    it "should zip the dsym" do
+      expect(@command).to receive(:system).with(/zip -r scheme.app.dSYM.zip scheme.app.dSYM/)
+      @command.execute(@config)
+    end
+
+    it "should move the zipped dsym file into the export path location" do
       @project.ipa_export_path = "/hello/world"
-      expect(FileUtils).to receive(:mv).with(/.dSYM/, /hello\/world/)
+      expect(FileUtils).to receive(:mv).with(/scheme.app.dSYM.zip/, /hello\/world/)
       @command.execute(@config)
     end
 
     it "should move the ipa file into the export path location" do
       @project.ipa_export_path = "/hello/world"
-      expect(FileUtils).to receive(:mv).with(/.ipa/, /hello\/world/)
+      expect(FileUtils).to receive(:mv).with(/scheme.ipa/, /hello\/world/)
       @command.execute(@config)
     end
   end
