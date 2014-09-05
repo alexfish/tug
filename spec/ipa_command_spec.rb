@@ -27,9 +27,15 @@ describe Tug::IpaCommand do
       @command.execute(@config)
     end
 
+    it "should move the dsym file into the export path location" do
+      @project.ipa_export_path = "/hello/world"
+      expect(FileUtils).to receive(:mv).with(/.dSYM/, /hello\/world/)
+      @command.execute(@config)
+    end
+
     it "should move the ipa file into the export path location" do
       @project.ipa_export_path = "/hello/world"
-      expect(FileUtils).to receive(:mv).with(anything, /hello\/world/)
+      expect(FileUtils).to receive(:mv).with(/.ipa/, /hello\/world/)
       @command.execute(@config)
     end
   end
