@@ -5,5 +5,5 @@ cache:
 rvm:
   - 2.0.0
 
-install: bundle install --without development --deployment
-script: rspec spec
+install: bundle install --deployment
+script: bundle exec rspec spec
