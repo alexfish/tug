@@ -1,4 +1,9 @@
 language: ruby
+cache:
+  directories:
+    - vendor/bundle
 rvm:
   - 2.0.0
+
+install: bundle install --without development --deployment
 script: rspec spec

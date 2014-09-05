@@ -1,6 +1,7 @@
 require "optparse"
 require 'yaml'
 require 'thor'
+require 'fileutils'
 
 require "tug/version"
 
