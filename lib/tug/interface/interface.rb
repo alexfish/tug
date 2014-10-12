@@ -33,7 +33,6 @@ module Tug
            :default => "#{Dir.pwd}/.tug.yml",
            :aliases => "-c"
     option :keychain,
-           :default => "tug",
            :aliases => "-k"
     option :password,
            :aliases => "-p",

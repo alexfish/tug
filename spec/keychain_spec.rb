@@ -1,12 +1,15 @@
 require "spec_helper"
 
-describe Tug::Keychain do 
+describe Tug::Keychain do
 
   before(:each) do
     @yaml = keychain_yaml
 
     @keychain = Tug::Keychain.keychain(@yaml)
+    @keychain.name = "tug"
+
     allow(@keychain).to receive(:system)
+    allow(@keychain).to receive(:`)
   end
 
   describe "when returning keychains" do
@@ -20,7 +23,7 @@ describe Tug::Keychain do
   end
 
   describe "when created" do
-    it "should have a apple certificate" do
+    it "should have an apple certificate" do
       expect(@keychain.apple_certificate).to be
     end
 
@@ -38,6 +41,11 @@ describe Tug::Keychain do
 
     it "should have a default keychain name" do
       expect(@keychain.name).to match("tug")
+    end
+
+    it "should know what the current keychain is" do
+      allow(@keychain).to receive(:`).and_return("    \"/Users/user/Library/Keychains/hi.keychain\"\n")
+      expect(@keychain.current_keychain_name).to match("hi")
     end
   end
 
@@ -81,6 +89,7 @@ describe Tug::Keychain do
     it "should import the private key" do
       ENV['TUG_P12_PASSWORD'] = nil
       @keychain = Tug::Keychain.keychain(@yaml)
+      @keychain.name = "tug"
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P ''")
       @keychain.import_private_key
@@ -89,6 +98,7 @@ describe Tug::Keychain do
     it "should import the private key with a password via env var" do
       ENV['TUG_P12_PASSWORD'] = "password"
       @keychain = Tug::Keychain.keychain(@yaml)
+      @keychain.name = "tug"
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P 'password'")
       @keychain.import_private_key
@@ -97,6 +107,7 @@ describe Tug::Keychain do
     it "should import the private key with a password via setter" do
       @keychain = Tug::Keychain.keychain(@yaml)
       @keychain.private_key_password = "hello"
+      @keychain.name = "tug"
 
       expect(@keychain).to receive(:system).with("security import private -k #{File.expand_path('~')}/Library/Keychains/tug.keychain -T /usr/bin/codesign -P 'hello'")
       @keychain.import_private_key
