@@ -21,7 +21,7 @@ module Tug
       @distribution_certificate   = keychain_yaml["distribution_certificate"]
       @distribution_profile       = keychain_yaml["distribution_profile"]
       @private_key                = keychain_yaml["private_key"]
-      @name                       = current_keychain_name
+      @name                       = default_keychain_name
 
       # these defaults are also set in Interface
       @private_key_password       = ENV['TUG_P12_PASSWORD']
@@ -64,7 +64,7 @@ module Tug
       system("cp #{distribution_profile} #{profile_export_path}")
     end
 
-    def current_keychain_name
+    def default_keychain_name
       path = `security default-keychain`
       keychain = path.scan(/[\w-]+\.keychain/).first
       keychain.gsub(".keychain", "")

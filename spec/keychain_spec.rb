@@ -45,7 +45,7 @@ describe Tug::Keychain do
 
     it "should know what the current keychain is" do
       allow(@keychain).to receive(:`).and_return("    \"/Users/user/Library/Keychains/hi.keychain\"\n")
-      expect(@keychain.current_keychain_name).to match("hi")
+      expect(@keychain.default_keychain_name).to match("hi")
     end
   end
 
