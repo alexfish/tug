@@ -10,6 +10,7 @@ require "tug/command/build_command"
 require "tug/command/ipa_command"
 require "tug/command/provision_command"
 
+require "tug/interface/deploy_interface"
 require "tug/interface/interface"
 
 require "tug/config/config_file"
