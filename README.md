@@ -138,7 +138,7 @@ $ tug provision
 
 ```
 -c, [--config]         # the tug config file to use (optional, defaults to .tug.yml)
--k, [--keychain]       # the keychain to install the certificates to (optional, defaults to tug)
+-k, [--keychain]       # the keychain to install the certificates to (optional, defaults to the system default keychain)
 -p, [--password]       # the password required to access your .p12 private key (optional, environment variable by default)
 ```
 
