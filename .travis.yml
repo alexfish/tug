@@ -1,4 +1,4 @@
-language: ruby
+language: objective-c
 cache:
   directories:
     - vendor/bundle
