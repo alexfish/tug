@@ -1,4 +1,5 @@
 language: ruby
+secure: "gGzogDYR9V1e9SCRMSp3AZiMYngFQQxgMR4dkxKihm1VyETIG5DVPsm8Uo/ftHr4p0mDYjOiQiFNkO8EINDDUsZk0evNUBLmCt/4Z+HdR+zPlohvINcHE866EtdxC25JfDwuqtHemxQPWPFdYooLgkpCpeQnT9ckyQlF+rlOK4c="
 cache:
   directories:
     - vendor/bundle
