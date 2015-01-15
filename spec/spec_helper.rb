@@ -1,4 +1,7 @@
 require "tug"
+require "codeclimate-test-reporter"
+
+CodeClimate::TestReporter.start
 
 module Helpers
   def project_yaml
