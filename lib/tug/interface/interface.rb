@@ -3,25 +3,25 @@ module Tug
   class Deploy < Thor
 
     desc "testflight", "deploy an ipa to testflight"
-    option :file, 
-           :aliases => "-f", 
+    option :file,
+           :aliases => "-f",
            :default => Dir.glob("*.ipa").first
-    option :dsym, 
-           :aliases => "-d", 
+    option :dsym,
+           :aliases => "-d",
            :default => Dir.glob("*.dSYM.zip").first
-    option :api_token, 
-           :aliases => "-a", 
+    option :api_token,
+           :aliases => "-a",
            :default => ENV['TUG_TESTFLIGHT_API_TOKEN']
-    option :team_token, 
-           :aliases => "-t", 
+    option :team_token,
+           :aliases => "-t",
            :default => ENV['TUG_TESTFLIGHT_TEAM_TOKEN']
-    option :lists, 
+    option :lists,
            :aliases => "-l"
-    option :notify, 
-           :aliases => "-n", 
+    option :notify,
+           :aliases => "-n",
            :default => false
-    option :release_notes, 
-           :aliases => "-r", 
+    option :release_notes,
+           :aliases => "-r",
            :default => "This build was uploaded via Tug"
     def testflight
       deployer = Tug::Testflight.new(options)
@@ -29,31 +29,31 @@ module Tug
     end
 
     desc "hockeyapp", "deploy an ipa to hockeyapp"
-    option :file, 
-           :aliases => "-f", 
+    option :file,
+           :aliases => "-f",
            :default => Dir.glob("*.ipa").first
-    option :dsym, 
-           :aliases => "-d", 
+    option :dsym,
+           :aliases => "-d",
            :default => Dir.glob("*.dSYM.zip").first
-    option :api_token, 
-           :aliases => "-a", 
+    option :api_token,
+           :aliases => "-a",
            :default => ENV['TUG_HOCKEYAPP_API_TOKEN']
-    option :notify, 
-           :aliases => "-n", 
+    option :notify,
+           :aliases => "-n",
            :default => 0
-    option :release_notes, 
-           :aliases => "-r", 
+    option :release_notes,
+           :aliases => "-r",
            :default => "This build was uploaded via Tug"
-    option :notes_type, 
-           :aliases => "-y", 
+    option :notes_type,
+           :aliases => "-y",
            :default => 1
-    option :status, 
+    option :status,
            :aliases => "-s"
-    option :tags, 
+    option :tags,
            :aliases => "-t"
-    option :teams, 
+    option :teams,
            :aliases => "-e"
-    option :users, 
+    option :users,
            :aliases => "-u"
     option :mandatory,
            :aliases => "-m"
@@ -85,43 +85,43 @@ module Tug
   class Interface < Thor
 
     desc "build", "build a project"
-    option :config, 
-           :default => "#{Dir.pwd}/.tug.yml", 
+    option :config,
+           :default => "#{Dir.pwd}/.tug.yml",
            :aliases => "-c"
     def build
-      config_file = Tug::ConfigFile.config_file(options[:config])
+      config_file = Tug::ConfigFile.config_file(options)
       execute(__method__.to_s, config_file)
     end
 
     desc "ipa", "generate an ipa"
-    option :config, 
-           :default => "#{Dir.pwd}/.tug.yml", 
+    option :config,
+           :default => "#{Dir.pwd}/.tug.yml",
            :aliases => "-c"
-    option :export, 
-           :default => "#{Dir.pwd}", 
+    option :export,
+           :default => "#{Dir.pwd}",
            :aliases => "-e"
-    option :build_config, 
-           :default => "Release", 
+    option :build_config,
+           :default => "Release",
            :aliases => "-b"
     def ipa
-      config_file = Tug::ConfigFile.config_file(options[:config])
+      config_file = Tug::ConfigFile.config_file(options)
       config_file.project.ipa_export_path = options[:export]
       config_file.project.ipa_config = options[:build_config]
       execute(__method__.to_s, config_file)
     end
 
     desc "provision", "provision system distrubution certificates and provisioning profile"
-    option :config, 
-           :default => "#{Dir.pwd}/.tug.yml", 
+    option :config,
+           :default => "#{Dir.pwd}/.tug.yml",
            :aliases => "-c"
-    option :keychain, 
-           :default => "tug", 
+    option :keychain,
+           :default => "tug",
            :aliases => "-k"
-    option :password, 
-           :aliases => "-p", 
+    option :password,
+           :aliases => "-p",
            :default => ENV['TUG_P12_PASSWORD']
     def provision
-      config_file = Tug::ConfigFile.config_file(options[:config])
+      config_file = Tug::ConfigFile.config_file(options)
       config_file.keychain.name = options[:keychain]
       config_file.keychain.private_key_password = options[:password]
       execute(__method__.to_s, config_file)
