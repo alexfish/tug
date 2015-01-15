@@ -105,8 +105,6 @@ module Tug
            :aliases => "-b"
     def ipa
       config_file = Tug::ConfigFile.config_file(options)
-      config_file.project.ipa_export_path = options[:export]
-      config_file.project.ipa_config = options[:build_config]
       execute(__method__.to_s, config_file)
     end
 
@@ -122,8 +120,6 @@ module Tug
            :default => ENV['TUG_P12_PASSWORD']
     def provision
       config_file = Tug::ConfigFile.config_file(options)
-      config_file.keychain.name = options[:keychain]
-      config_file.keychain.private_key_password = options[:password]
       execute(__method__.to_s, config_file)
     end
 

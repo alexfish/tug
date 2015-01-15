@@ -13,6 +13,8 @@ require "tug/command/provision_command"
 require "tug/interface/interface"
 
 require "tug/config/config_file"
+require "tug/config/ipa_config_file"
+require "tug/config/keychain_config_file"
 require "tug/config/missing_config_file"
 
 require "tug/project/project"
