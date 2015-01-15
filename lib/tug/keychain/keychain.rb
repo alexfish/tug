@@ -27,6 +27,11 @@ module Tug
       @name                       = "tug"
     end
 
+    def configure(options)
+      @name = options[:keychain]
+      @private_key_password = options[:password]
+    end
+
     def create_keychain
       system("security create-keychain -p tug #{name}.keychain")
     end
