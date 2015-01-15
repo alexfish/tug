@@ -9,14 +9,18 @@ module Helpers
   end
 
   def keychain_yaml
-    {"keychain" => {"apple_certificate" => "apple", 
-            "distribution_certificate" => "dist", 
-            "distribution_profile" => "path/to/profile", 
+    {"keychain" => {"apple_certificate" => "apple",
+            "distribution_certificate" => "dist",
+            "distribution_profile" => "path/to/profile",
             "private_key" => "private"}}
   end
 
   def release_notes_path
     File.join(File.dirname(__FILE__), 'test_notes.txt')
+  end
+
+  def special_release_notes_path
+    File.join(File.dirname(__FILE__), 'test_special_notes.txt')
   end
 end
 
