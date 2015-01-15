@@ -5,8 +5,7 @@ module Tug
 
       def config_file(options)
         config_file = config_file_from_path(options[:config])
-        config_file.keychain.name = options[:keychain]
-        config_file.keychain.private_key_password = options[:password]
+        config_file.keychain.configure(options)
 
         return config_file
       end

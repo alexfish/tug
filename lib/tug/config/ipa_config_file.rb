@@ -5,8 +5,7 @@ module Tug
 
       def config_file(options)
         config_file = config_file_from_path(options[:config])
-        config_file.project.ipa_export_path = options[:export]
-        config_file.project.ipa_config = options[:build_config]
+        config_file.project.configure(options)
 
         return config_file
       end
