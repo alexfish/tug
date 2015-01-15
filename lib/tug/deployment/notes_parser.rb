@@ -14,7 +14,7 @@ module Tug
     end
 
     def initialize(notes)
-      @notes = notes
+      @notes = %Q|#{notes}|
     end
   end
 end
