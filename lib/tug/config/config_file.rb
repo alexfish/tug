@@ -30,8 +30,8 @@ module Tug
     end
 
     def initialize(path)
-      config = YAML::load_file(path)
-      @project = Tug::Project.new(config)
+      config    = YAML::load_file(path)
+      @project  = Tug::Project.new(config)
       @keychain = Tug::Keychain.keychain(config)
     end
 

@@ -108,6 +108,18 @@ module Tug
       execute(__method__.to_s, config_file)
     end
 
+    desc "notify", "notify your team via slack"
+    option :message,
+           :aliases => "-m",
+           :required => true
+    option :webhook_url,
+           :aliases => "-w",
+           :default => ENV['TUG_SLACK_WEBHOOK_URL']
+    def notify
+      slack = Tug::Slack.new(options)
+      slack.notify(options[:message])
+    end
+
     desc "provision", "provision system distrubution certificates and provisioning profile, don't run this on a local dev machine"
     option :config,
            :default => "#{Dir.pwd}/.tug.yml",

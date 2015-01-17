@@ -2,6 +2,7 @@ require "optparse"
 require 'yaml'
 require 'thor'
 require 'fileutils'
+require 'json'
 
 require "tug/version"
 
@@ -31,3 +32,5 @@ require "tug/deployment/testflight"
 require "tug/deployment/hockeyapp"
 require "tug/deployment/notes_parser"
 require "tug/deployment/notes_file_parser"
+
+require "tug/notify/slack"

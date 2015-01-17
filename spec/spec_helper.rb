@@ -5,17 +5,37 @@ CodeClimate::TestReporter.start
 
 module Helpers
   def project_yaml
-    {"project" => {"workspace" => "workspace",
-      "schemes" => ["scheme"],
-      "ipa_config" => "config",
-      "ipa_profile" => "profile"}}
+    {
+      "project" =>
+      {
+        "workspace" => "workspace",
+        "schemes" => ["scheme"],
+        "ipa_config" => "config",
+        "ipa_profile" => "profile"
+      }
+    }
   end
 
   def keychain_yaml
-    {"keychain" => {"apple_certificate" => "apple",
-            "distribution_certificate" => "dist",
-            "distribution_profile" => "path/to/profile",
-            "private_key" => "private"}}
+    {
+      "keychain" =>
+      {
+        "apple_certificate" => "apple",
+        "distribution_certificate" => "dist",
+        "distribution_profile" => "path/to/profile",
+        "private_key" => "private"
+      }
+    }
+  end
+
+  def slack_yaml
+    {
+      "slack" =>
+      {
+        "team" => "slack_team",
+        "channel" => "#slack_channel"
+      }
+    }
   end
 
   def release_notes_path
