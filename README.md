@@ -6,7 +6,7 @@ Build and deploy iOS applications
 
 [![Build Status](https://travis-ci.org/alexfish/tug.svg?branch=feature%2Fbuild)](https://travis-ci.org/alexfish/tug)
 [![Code Climate](https://codeclimate.com/github/alexfish/tug/badges/gpa.svg)](https://codeclimate.com/github/alexfish/tug)
-[![Test Coverage](https://codeclimate.com/github/alexfish/tug/badges/coverage.svg)](https://codeclimate.com/github/alexfish/tug)
+[![Gem Version](https://badge.fury.io/rb/tug.svg)](http://badge.fury.io/rb/tug)
 
 ## Contents
 
