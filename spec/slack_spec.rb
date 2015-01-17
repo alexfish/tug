@@ -61,5 +61,10 @@ describe Tug::Slack do
       expect(IO).to_not receive(:popen)
       slack.notify("text")
     end
+
+    it "should send a payload with a new token" do
+      expect(IO).to receive(:popen).with(/token=new_token/)
+      @slack.notify("text", "new_token")
+    end
   end
 end
