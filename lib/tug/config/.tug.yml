@@ -7,6 +7,3 @@ keychain:
   distribution_certificate: dist.cer
   distribution_profile: profile.mobileprovision
   private_key: dist.p12
-slack:
-  team: "slack_team"
-  channel: "#slack_channel"

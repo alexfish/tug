@@ -4,7 +4,8 @@ describe Tug::Slack do
 
   before(:each) do
     ENV['TUG_SLACK_WEBHOOK_TOKEN'] = "slack_token"
-    @slack = Tug::Slack.new(slack_yaml)
+    @options = {:team => "slack_team", :channel => "#slack_channel", :webhook_token => "slack_token"}
+    @slack = Tug::Slack.new(@options)
   end
 
   describe "when notifying" do
@@ -44,27 +45,22 @@ describe Tug::Slack do
     end
 
     it "shouldn't send a payload if missing a team" do
-      slack = Tug::Slack.new({"slack" => {"team" => nil}})
+      slack = Tug::Slack.new({"foo" => "bar"})
       expect(IO).to_not receive(:popen)
       slack.notify("text")
     end
 
     it "shouldn't send a payload if missing a channel" do
-      slack = Tug::Slack.new({"slack" => {"channel" => nil}})
+      slack = Tug::Slack.new({"foo" => "bar"})
       expect(IO).to_not receive(:popen)
       slack.notify("text")
     end
 
     it "shouldn't send a payload if missing a token" do
       ENV['TUG_SLACK_WEBHOOK_TOKEN'] = nil
-      slack = Tug::Slack.new(slack_yaml)
+      slack = Tug::Slack.new({"foo" => "bar"})
       expect(IO).to_not receive(:popen)
       slack.notify("text")
-    end
-
-    it "should send a payload with a new token" do
-      expect(IO).to receive(:popen).with(/token=new_token/)
-      @slack.notify("text", "new_token")
     end
   end
 end
