@@ -167,6 +167,23 @@ keychain:
   private_key: certs/dist.p12
 ```
 
+### Notify
+
+Notify your team of updates via slack, this requires a slack incomming webhook for tug, [create one here](https:/my.slack.com/services/new/incoming-webhook) and take note of the URL.
+
+```
+$ tug notify -m "Hello"
+```
+
+###### Options
+
+```
+-m, [--messsage]                    # The message to send to slack
+-w, [--webhook-url=WEBHOOK_URL]     # (optional) Slack incomming webhook URL
+```
+
+> The following environment variable is used to set your slack incomming webhook URL
+> * `TUG_SLACK_WEBHOOK_URL`
 
 ## Contributing
 
