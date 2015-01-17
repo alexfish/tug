@@ -1,19 +1,15 @@
 module Tug
   class Slack
 
-    attr_reader   :channel
-    attr_reader   :team
-    attr_accessor :token
+    attr_accessor :url
 
     def initialize(options)
-      @team      = options[:team]
-      @channel   = options[:channel]
-      @token     = options[:webhook_token]
+      @url = options[:webhook_url]
     end
 
     def notify(text)
-      unless @team.nil? || @channel.nil? || @token.nil?
-        IO.popen("curl #{url} -X POST -# #{params(text)}") do |pipe|
+      unless @url.nil?
+        IO.popen("curl #{@url} -X POST -# #{params(text)}") do |pipe|
           puts pipe.read
         end
       end
@@ -21,19 +17,12 @@ module Tug
 
     private
 
-    def url
-      "https://#{@team}.slack.com/services/hooks/incoming-webhook?token=#{token}"
-    end
-
     def params(text)
       "-F payload='#{payload(text).to_json}'"
     end
 
     def payload(text)
       {
-        "username" => "tug",
-        "icon_emoji" => ":speedboat:",
-        "channel" => @channel,
         "text" => text,
         "color"=> "good",
       }

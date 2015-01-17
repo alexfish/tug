@@ -108,18 +108,13 @@ module Tug
       execute(__method__.to_s, config_file)
     end
 
+    desc "notify", "notify your team via slack"
     option :message,
            :aliases => "-m",
            :required => true
-    option :team,
-           :aliases => "-t",
-           :required => true
-    option :channel,
-           :aliases => "-c",
-           :required => true
-    option :webhook_token,
+    option :webhook_url,
            :aliases => "-w",
-           :default => ENV['TUG_SLACK_WEBHOOK_TOKEN']
+           :default => ENV['TUG_SLACK_WEBHOOK_URL']
     def notify
       config_file = Tug::ConfigFile.config_file(options)
       config_file.slack.notify(options[:message])
