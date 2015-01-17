@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Tug::Keychain do 
+describe Tug::Keychain do
 
   before(:each) do
     @yaml = keychain_yaml
@@ -104,7 +104,7 @@ describe Tug::Keychain do
   end
 
   describe "when importing profiles" do
-  
+
     before(:each) do
       allow(FileUtils).to receive(:mkdir_p)
     end

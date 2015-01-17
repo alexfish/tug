@@ -3,6 +3,7 @@ module Tug
 
     attr_reader :project
     attr_reader :keychain
+    attr_reader :slack
 
     class << self
 
@@ -30,9 +31,10 @@ module Tug
     end
 
     def initialize(path)
-      config = YAML::load_file(path)
-      @project = Tug::Project.new(config)
+      config    = YAML::load_file(path)
+      @project  = Tug::Project.new(config)
       @keychain = Tug::Keychain.keychain(config)
+      @slack    = Tug::Slack.new(config)
     end
 
     private

@@ -4,41 +4,62 @@ describe Tug::Slack do
 
   before(:each) do
     ENV['TUG_SLACK_WEBHOOK_TOKEN'] = "slack_token"
-    @slack = Tug::Slack.new("#channel", "test_team")
-
-    @command = double(Tug::Command)
-    allow(@command).to receive(:notify_text).and_return("hello world")
+    @slack = Tug::Slack.new(slack_yaml)
   end
 
   describe "when notifying" do
-    it "should send a payload to slack with a command notify text" do
-      expect(IO).to receive(:popen).with(/"text\":\"hello world\"/)
-      @slack.notify(@command)
+    it "should send a payload to slack with text" do
+      expect(IO).to receive(:popen).with(/"text\":\"text\"/)
+      @slack.notify("text")
     end
 
     it "should send a payload to slack with a username" do
       expect(IO).to receive(:popen).with(/\"username\":\"tug\"/)
-      @slack.notify(@command)
+      @slack.notify("text")
     end
 
     it "should send a payload to slack with an emoji" do
       expect(IO).to receive(:popen).with(/\"icon_emoji\":\":speedboat:\"/)
-      @slack.notify(@command)
+      @slack.notify("text")
     end
 
     it "should send a payload to slack with a color" do
       expect(IO).to receive(:popen).with(/\"color\":\"good\"/)
-      @slack.notify(@command)
+      @slack.notify("text")
     end
 
     it "should send a payload to the correct team" do
-      expect(IO).to receive(:popen).with(/test_team.slack.com/)
-      @slack.notify(@command)
+      expect(IO).to receive(:popen).with(/slack_team.slack.com/)
+      @slack.notify("text")
     end
 
     it "should send a payload with the webhook token" do
       expect(IO).to receive(:popen).with(/token=slack_token/)
-      @slack.notify(@command)
+      @slack.notify("text")
+    end
+
+    it "should send a payload to the correct channel" do
+      expect(IO).to receive(:popen).with(/\"channel\":\"#slack_channel"/)
+      @slack.notify("text")
+    end
+
+    it "shouldn't send a payload if missing a team" do
+      slack = Tug::Slack.new({"slack" => {"team" => nil}})
+      expect(IO).to_not receive(:popen)
+      slack.notify("text")
+    end
+
+    it "shouldn't send a payload if missing a channel" do
+      slack = Tug::Slack.new({"slack" => {"channel" => nil}})
+      expect(IO).to_not receive(:popen)
+      slack.notify("text")
+    end
+
+    it "shouldn't send a payload if missing a token" do
+      ENV['TUG_SLACK_WEBHOOK_TOKEN'] = nil
+      slack = Tug::Slack.new(slack_yaml)
+      expect(IO).to_not receive(:popen)
+      slack.notify("text")
     end
   end
 end

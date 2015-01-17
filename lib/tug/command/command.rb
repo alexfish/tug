@@ -26,10 +26,6 @@ module Tug
       end
     end
 
-    def notify_text
-      "Command completed :+1:"
-    end
-
     private
 
     def xctool(config)

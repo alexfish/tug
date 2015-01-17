@@ -5,15 +5,19 @@ module Tug
     attr_reader   :team
     attr_accessor :webhook_token
 
-    def initialize(channel, team)
-      @team           = team
-      @channel        = channel
-      @webhook_token  = ENV['TUG_SLACK_WEBHOOK_TOKEN']
+    def initialize(config)
+      if config.has_key?("slack")
+        @team           = config["slack"]["team"]
+        @channel        = config["slack"]["channel"]
+        @webhook_token  = ENV['TUG_SLACK_WEBHOOK_TOKEN']
+      end
     end
 
-    def notify(command)
-      IO.popen("curl #{url} -X POST -# #{params(command)}") do |pipe|
-        puts pipe.read
+    def notify(text)
+      unless @team.nil? || @channel.nil? || @webhook_token.nil?
+        IO.popen("curl #{url} -X POST -# #{params(text)}") do |pipe|
+          puts pipe.read
+        end
       end
     end
 
@@ -23,16 +27,16 @@ module Tug
       "https://#{@team}.slack.com/services/hooks/incoming-webhook?token=#{@webhook_token}"
     end
 
-    def params(command)
-      "-F payload='#{payload(command).to_json}'"
+    def params(text)
+      "-F payload='#{payload(text).to_json}'"
     end
 
-    def payload(command)
+    def payload(text)
       {
         "username" => "tug",
         "icon_emoji" => ":speedboat:",
         "channel" => @channel,
-        "text" => command.notify_text,
+        "text" => text,
         "color"=> "good",
       }
     end

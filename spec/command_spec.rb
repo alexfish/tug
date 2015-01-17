@@ -26,9 +26,5 @@ describe Tug::Command do
       command = Tug::Command.command_for_string("provision")
       expect(command).to be_kind_of(Tug::ProvisionCommand)
     end
-
-    it "should have a default notify text" do
-      expect(@command.notify_text).to match("Command completed :+1:")
-    end
   end
 end

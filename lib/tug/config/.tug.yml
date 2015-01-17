@@ -8,5 +8,5 @@ keychain:
   distribution_profile: profile.mobileprovision
   private_key: dist.p12
 slack:
-  token: slack_webhook_token
+  team: "slack_team"
   channel: "#slack_channel"
