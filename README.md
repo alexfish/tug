@@ -8,6 +8,18 @@ Build and deploy iOS applications
 [![Code Climate](https://codeclimate.com/github/alexfish/tug/badges/gpa.svg)](https://codeclimate.com/github/alexfish/tug)
 [![Test Coverage](https://codeclimate.com/github/alexfish/tug/badges/coverage.svg)](https://codeclimate.com/github/alexfish/tug)
 
+## Contents
+
+* [Installation](#installation)
+* [Config](#config)
+* [Commands](#commands)
+  * [Build](#build)
+  * [Generate an IPA](#ipa)
+  * [Deploy](#deploy)
+  * [Provision a machine](#provision)
+  * [Notify your team](#notify)
+* [Contributing](#contributing)
+
 ## Installation
 
 Add this line to your application's Gemfile:
