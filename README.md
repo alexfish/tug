@@ -1,6 +1,6 @@
 # Tug
 
-![icon](icon.png)
+:ship:
 
 Build and deploy iOS applications
 
