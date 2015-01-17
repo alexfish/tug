@@ -108,7 +108,7 @@ module Tug
       execute(__method__.to_s, config_file)
     end
 
-    desc "provision", "provision system distrubution certificates and provisioning profile"
+    desc "provision", "provision system distrubution certificates and provisioning profile, don't run this on a local dev machine"
     option :config,
            :default => "#{Dir.pwd}/.tug.yml",
            :aliases => "-c"

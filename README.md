@@ -129,6 +129,8 @@ $ tug deploy hockeyapp
 
 ### Provision
 
+> :warning: Beware of running this command on a local dev machine, this should only be run on CI servers as your keychain is altered.
+
 Tug can provision a new machine ready for signing ipas by installing the certificates and provisioning profile required for generating a signed ipa of your application, this is very useful for CI environments like Travis. 
 
 ```
