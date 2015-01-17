@@ -7,3 +7,6 @@ keychain:
   distribution_certificate: dist.cer
   distribution_profile: profile.mobileprovision
   private_key: dist.p12
+slack:
+  token: slack_webhook_token
+  channel: "#slack_channel"
