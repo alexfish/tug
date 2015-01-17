@@ -116,8 +116,8 @@ module Tug
            :aliases => "-w",
            :default => ENV['TUG_SLACK_WEBHOOK_URL']
     def notify
-      config_file = Tug::ConfigFile.config_file(options)
-      config_file.slack.notify(options[:message])
+      slack = Tug::Slack.new(options)
+      slack.notify(options[:message])
     end
 
     desc "provision", "provision system distrubution certificates and provisioning profile, don't run this on a local dev machine"
