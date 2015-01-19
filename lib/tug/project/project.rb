@@ -14,8 +14,8 @@ module Tug
     end
 
     def configure(options)
-      @ipa_export_path = options[:export]
-      @ipa_config = options[:build_config]
+      @ipa_export_path = options["export"]
+      @ipa_config = options["build_config"]
     end
   end
 end

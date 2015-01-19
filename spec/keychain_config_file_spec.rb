@@ -7,7 +7,7 @@ describe Tug::KeychainConfigFile do
     config = YAML.load_file(file)
     allow(YAML).to receive(:load_file).and_return(config)
     @config_file = Tug::ConfigFile.new("path")
-    @options = {:config => "path", :keychain => "keychain", :password => "password"}
+    @options = {"config" => "path", "keychain" => "keychain", "password" => "password"}
   end
 
   describe "when returning a config file" do

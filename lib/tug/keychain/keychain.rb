@@ -28,8 +28,8 @@ module Tug
     end
 
     def configure(options)
-      @name = options[:keychain]
-      @private_key_password = options[:password]
+      @name = options["keychain"]
+      @private_key_password = options["password"]
     end
 
     def create_keychain
