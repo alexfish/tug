@@ -7,12 +7,12 @@ module Tug
     class << self
 
       def config_file(options)
-        if options.has_key?(:export)
+        if options.has_key?("export")
           Tug::IpaConfigFile.config_file(options)
-        elsif options.has_key?(:keychain)
+        elsif options.has_key?("keychain")
           Tug::KeychainConfigFile.config_file(options)
-        elsif options.has_key?(:config)
-          Tug::ConfigFile.config_file_from_path(options[:config])
+        elsif options.has_key?("config")
+          Tug::ConfigFile.config_file_from_path(options["config"])
         else
           Tug::MissingConfigFile.new
         end
@@ -33,12 +33,6 @@ module Tug
       config    = YAML::load_file(path)
       @project  = Tug::Project.new(config)
       @keychain = Tug::Keychain.keychain(config)
-    end
-
-    private
-
-    def default_path
-      File.join(Dir.pwd, '.tug.yml')
     end
   end
 end
