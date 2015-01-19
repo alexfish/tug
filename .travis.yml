@@ -1,7 +1,4 @@
 language: ruby
-cache:
-  directories:
-    - vendor/bundle
 addons:
   code_climate:
     repo_token: b8dd6ed54007032ccf75bfcc639e8f79c3ff3836307c0c910ea84e09506e8016
