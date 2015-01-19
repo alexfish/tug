@@ -1,8 +1,10 @@
 language: ruby
-env: CODECLIMATE_REPO_TOKEN=b8dd6ed54007032ccf75bfcc639e8f79c3ff3836307c0c910ea84e09506e8016
 cache:
   directories:
     - vendor/bundle
+addons:
+  code_climate:
+    repo_token: b8dd6ed54007032ccf75bfcc639e8f79c3ff3836307c0c910ea84e09506e8016
 rvm:
   - 2.0.0
 
