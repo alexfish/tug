@@ -137,7 +137,7 @@ $ tug deploy hockeyapp
 
 > 
 > The following environment variable is used to set your hockeyapp API key
-> * `TUG_HOCKEYAPP_API_KEY`
+> * `TUG_HOCKEYAPP_API_TOKEN`
 
 ### Provision
 
