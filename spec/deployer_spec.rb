@@ -17,7 +17,7 @@ describe Tug::Deployer do
   describe "when deploying" do
 
     it "should have some release notes" do
-      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
+      expect(IO).to receive(:popen).with(/-F "notes=<Notes"/)
       @deployer.deploy
     end
 

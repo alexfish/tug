@@ -12,19 +12,13 @@ module Tug
       @api_token  = options[:api_token]
       @notify     = options[:notify]
       @dsym       = options[:dsym]
-
-      self.notes   = options[:release_notes]
+      @notes      = options[:release_notes]
     end
 
     def deploy
       IO.popen("curl #{url} -X POST -# #{params}") do |pipe|
         puts pipe.read
       end
-    end
-
-    def notes=(notes)
-      parser = Tug::NotesParser.notes_parser(notes)
-      @notes = parser.notes
     end
 
     private
@@ -34,7 +28,7 @@ module Tug
     end
 
     def params
-      params = "-F notes='#{notes}' "
+      params  = "-F \"notes=<#{notes}\" "
       params += "-F dsym=@#{dsym} "
       params += "-F notify=#{notify} "
     end

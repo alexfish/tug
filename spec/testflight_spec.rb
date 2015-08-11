@@ -43,7 +43,7 @@ describe Tug::Testflight do
     end
 
     it "should have some release notes" do
-      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
+      expect(IO).to receive(:popen).with(/-F "notes=<Notes"/)
       @deployer.deploy
     end
 
