@@ -38,7 +38,7 @@ describe Tug::Hockeyapp do
     end
 
     it "should send the dsym as a param" do
-      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
+      expect(IO).to receive(:popen).with(/-F "dsym=@test.zip"/)
       @deployer.deploy
     end
 

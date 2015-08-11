@@ -29,8 +29,8 @@ module Tug
 
     def params
       params  = "-F \"notes=<#{notes}\" "
-      params += "-F dsym=@#{dsym} "
-      params += "-F notify=#{notify} "
+      params += "-F \"dsym=@#{dsym}\" "
+      params += "-F \"notify=#{notify}\" "
     end
   end
 end

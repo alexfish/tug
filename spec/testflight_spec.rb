@@ -23,22 +23,22 @@ describe Tug::Testflight do
     end
 
     it "should send the ipa as a param" do
-      expect(IO).to receive(:popen).with(/-F file=@test.ipa/)
+      expect(IO).to receive(:popen).with(/-F "file=@test.ipa"/)
       @deployer.deploy
     end
 
     it "should send the dsym as a param" do
-      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
+      expect(IO).to receive(:popen).with(/-F "dsym=@test.zip"/)
       @deployer.deploy
     end
 
     it "should send the team token as a param" do
-      expect(IO).to receive(:popen).with(/-F team_token='team_token'/)
+      expect(IO).to receive(:popen).with(/-F "team_token=team_token"/)
       @deployer.deploy
     end
 
     it "should send the api token as a param" do
-      expect(IO).to receive(:popen).with(/-F api_token='api_token'/)
+      expect(IO).to receive(:popen).with(/-F "api_token=api_token"/)
       @deployer.deploy
     end
 
@@ -48,12 +48,12 @@ describe Tug::Testflight do
     end
 
     it "should have lists" do
-      expect(IO).to receive(:popen).with(/-F distribution_lists=''/)
+      expect(IO).to receive(:popen).with(/-F "distribution_lists="/)
       @deployer.deploy
     end
 
     it "should notify" do
-      expect(IO).to receive(:popen).with(/-F notify=true/)
+      expect(IO).to receive(:popen).with(/-F "notify=true"/)
       @deployer.deploy
     end
   end
