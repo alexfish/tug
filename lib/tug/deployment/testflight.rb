@@ -19,10 +19,10 @@ module Tug
 
     def params
       params = super
-      params += "-F file=@#{file} "
-      params += "-F api_token='#{api_token}' "
-      params += "-F team_token='#{team_token}' "
-      params += "-F distribution_lists='#{lists}' "
+      params += "-F \"file=@#{file}\" "
+      params += "-F \"api_token=#{api_token}\" "
+      params += "-F \"team_token=#{team_token}\" "
+      params += "-F \"distribution_lists=#{lists}\" "
     end
   end
 end

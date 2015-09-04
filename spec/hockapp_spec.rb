@@ -31,19 +31,19 @@ describe Tug::Hockeyapp do
       expect(IO).to receive(:popen).with(/https:\/\/rink.hockeyapp.net\/api\/2\/apps\/upload/)
       @deployer.deploy
     end
-    
+
     it "should send the ipa as a param" do
       expect(IO).to receive(:popen).with(/-F "ipa=@test.ipa"/)
       @deployer.deploy
     end
 
     it "should send the dsym as a param" do
-      expect(IO).to receive(:popen).with(/-F dsym=@test.zip/)
+      expect(IO).to receive(:popen).with(/-F "dsym=@test.zip"/)
       @deployer.deploy
     end
 
     it "should have some release notes" do
-      expect(IO).to receive(:popen).with(/-F notes='Notes'/)
+      expect(IO).to receive(:popen).with(/-F "notes=<Notes"/)
       @deployer.deploy
     end
 
