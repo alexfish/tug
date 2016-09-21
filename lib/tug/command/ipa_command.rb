@@ -11,9 +11,9 @@ module Tug
     private
 
     def export_ipa(project)
-      xcodebuild = Tug::XcodeBuild.new
+      build_tool_export = Tug::BuildToolExport.new
       project.schemes.each do |scheme|
-        xcodebuild.export_ipa(scheme)
+        build_tool_export.export_ipa(scheme)
       end
     end
 
@@ -25,8 +25,8 @@ module Tug
 
     def zip_and_move_dsym(project)
       project.schemes.each do |scheme|
-        zipfile = zip_file "/tmp/#{scheme}.xcarchive/dSYMs", "#{scheme}.app.dSYM"  
-        FileUtils.mv zipfile, "#{project.ipa_export_path}/#{scheme}.app.dSYM.zip"     
+        zipfile = zip_file "/tmp/#{scheme}.xcarchive/dSYMs", "#{scheme}.app.dSYM"
+        FileUtils.mv zipfile, "#{project.ipa_export_path}/#{scheme}.app.dSYM.zip"
       end
     end
 

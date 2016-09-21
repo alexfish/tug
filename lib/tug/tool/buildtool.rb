@@ -1,5 +1,5 @@
 module Tug
-  class XCTool
+  class BuildTool
 
     attr_reader :config
 
@@ -7,9 +7,9 @@ module Tug
       def tool_for_config(config)
         case config.downcase
         when "inhouse", "release", /release/, /inhouse/
-          Tug::XCToolArchive.new(config)
+          Tug::BuildToolArchive.new(config)
         else
-          Tug::XCToolBuild.new(config)
+          Tug::BuildToolBuild.new(config)
         end
       end
     end
@@ -19,7 +19,7 @@ module Tug
     end
 
     def build(workspace, scheme)
-      system("xctool #{build_options(workspace, scheme)}")
+      system("xcodebuild #{build_options(workspace, scheme)}")
     end
 
     private

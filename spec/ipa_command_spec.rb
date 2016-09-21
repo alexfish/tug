@@ -5,8 +5,8 @@ describe Tug::IpaCommand do
   describe "when executing" do
     before(:each) do
       @command = Tug::IpaCommand.new
-      allow_any_instance_of(Tug::XcodeBuild).to receive(:system)
-      allow_any_instance_of(Tug::XCTool).to receive(:system)
+      allow_any_instance_of(Tug::BuildToolExport).to receive(:system)
+      allow_any_instance_of(Tug::BuildTool).to receive(:system)
       allow(FileUtils).to receive(:mv)
       allow(@command).to receive(:system)
 
@@ -18,13 +18,13 @@ describe Tug::IpaCommand do
       allow(@config).to receive(:project).and_return(@project)
     end
 
-    it "should generate an archive using xctool" do
-      expect_any_instance_of(Tug::XCTool).to receive(:system).with("xctool -workspace workspace -scheme scheme -configuration InHouse archive -archivePath /tmp/scheme.xcarchive")
+    it "should generate an archive using xcodebuild" do
+      expect_any_instance_of(Tug::BuildTool).to receive(:system).with("xcodebuild -workspace workspace -scheme scheme -configuration InHouse archive -archivePath /tmp/scheme.xcarchive")
       @command.execute(@config)
     end
 
     it "should export an ipa using xcode build" do
-      expect_any_instance_of(Tug::XcodeBuild).to receive(:system).with("xcodebuild -archivePath /tmp/scheme.xcarchive -exportPath /tmp/scheme.ipa -exportFormat ipa -exportArchive -exportWithOriginalSigningIdentity")
+      expect_any_instance_of(Tug::BuildToolExport).to receive(:system).with("xcodebuild -archivePath /tmp/scheme.xcarchive -exportPath /tmp/scheme.ipa -exportFormat ipa -exportArchive -exportWithOriginalSigningIdentity")
       @command.execute(@config)
     end
 

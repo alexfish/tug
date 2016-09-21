@@ -1,5 +1,5 @@
 module Tug
-  class XCToolBuild < XCTool
+  class BuildToolBuild < BuildTool
 
     private
 
