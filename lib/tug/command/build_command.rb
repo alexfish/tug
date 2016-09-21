@@ -3,8 +3,8 @@ module Tug
 
     private
 
-    def xctool(config)
-      xctool = Tug::XCTool.tool_for_config("Debug")
+    def build_tool(config)
+      build_tool = Tug::BuildTool.tool_for_config("Debug")
     end
   end
 end

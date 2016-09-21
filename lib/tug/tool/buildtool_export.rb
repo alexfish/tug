@@ -1,5 +1,5 @@
 module Tug
-  class XcodeBuild
+  class BuildToolExport
 
     def export_ipa(name)
       system("xcodebuild #{archive_options(name)} #{export_options(name)} #{profile_options}")

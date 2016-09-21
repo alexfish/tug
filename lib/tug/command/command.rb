@@ -20,16 +20,16 @@ module Tug
 
     def execute(config_file)
       project = config_file.project
-      @xctool = xctool(project.ipa_config)
+      @build_tool = build_tool(project.ipa_config)
       project.schemes.each do |scheme|
-        @xctool.build(project.workspace, scheme)
+        @build_tool.build(project.workspace, scheme)
       end
     end
 
     private
 
-    def xctool(config)
-      xctool = Tug::XCTool.tool_for_config(config)
+    def build_tool(config)
+      build_tool = Tug::BuildTool.tool_for_config(config)
     end
   end
 end

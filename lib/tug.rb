@@ -20,10 +20,10 @@ require "tug/config/missing_config_file"
 
 require "tug/project/project"
 
-require "tug/tool/xcode_build"
-require "tug/tool/xctool"
-require "tug/tool/xctool_build"
-require "tug/tool/xctool_archive"
+require "tug/tool/buildtool"
+require "tug/tool/buildtool_archive"
+require "tug/tool/buildtool_build"
+require "tug/tool/buildtool_export"
 
 require "tug/keychain/keychain"
 
